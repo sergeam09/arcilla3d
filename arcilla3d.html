@@ -4,7 +4,7 @@
 <style>
 :root{--bg:#17171a;--ui:#232326;--btn:#2e2e32;--ac:#8e8e93;--acx:#141416;--tx:#e8e8ea;--mut:#9a9aa0;--r:3px;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-html,body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--tx);font:10px system-ui,-apple-system,sans-serif;-webkit-user-select:none;user-select:none}
+html,body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--tx);font:12px system-ui,-apple-system,sans-serif;-webkit-user-select:none;user-select:none}
 *{outline:0!important;-webkit-tap-highlight-color:transparent}
 #app{position:relative;height:100%}
 #cv{position:absolute;inset:0;width:100%;height:100%;touch-action:none;display:block}
@@ -12,48 +12,49 @@ body[data-mode="sculpt"] [data-m="poly"],body[data-mode="poly"] [data-m="sculpt"
 body.cl #ui,body.cl #sl{display:none}
 button,select{font:inherit;color:var(--tx);background:transparent;border:0;border-radius:var(--r);padding:0}
 button{display:flex;align-items:center;justify-content:center;position:relative}
-button::after{content:"";position:absolute;inset:-5px}
+button::after{content:"";position:absolute;inset:-2px}
 button.on{background:var(--ac);color:var(--acx)}
-svg.i{width:14px;height:14px;fill:currentColor;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+svg.i{width:28px;height:28px;fill:currentColor;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 svg.i .f{stroke:none}svg.i .s{fill:none}
-button span{display:none}.ax span{display:inline;font-size:9px}
+button span{display:none}.ax span{display:inline;font-size:14px}
 .grp,#ui,#sl,#np{background:var(--ui);border-radius:var(--r)}
-#top{position:absolute;top:6px;left:6px;right:6px;display:flex;flex-wrap:wrap;gap:4px;pointer-events:none;z-index:3}
+#top{position:absolute;top:8px;left:8px;right:8px;display:flex;flex-wrap:wrap;gap:8px;pointer-events:none;z-index:3}
 #top>*{pointer-events:auto}
 .grp{display:flex;align-items:center}
-.grp button{width:24px;height:22px;flex:none}
-.grp button.tx{width:auto;padding:0 8px;font-size:10px}
-.cw{width:24px;height:22px;display:flex;align-items:center;justify-content:center}
-input[type=color]{width:13px;height:13px;border:0;border-radius:50%;padding:0;background:none}
+.grp button{width:48px;height:44px;flex:none}
+.grp button.tx{width:auto;padding:0 16px;font-size:14px}
+.cw{width:48px;height:44px;display:flex;align-items:center;justify-content:center}
+input[type=color]{width:26px;height:26px;border:0;border-radius:50%;padding:0;background:none}
 input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-webkit-color-swatch{border:0;border-radius:50%}
 input[type=color]::-moz-color-swatch{border:0;border-radius:50%}
-#ui{position:absolute;left:50%;transform:translateX(-50%);bottom:6px;max-width:calc(100% - 12px);display:flex;overflow-x:auto;scrollbar-width:none;z-index:3}
+#ui{position:absolute;left:50%;transform:translateX(-50%);bottom:8px;max-width:calc(100% - 16px);display:flex;overflow-x:auto;scrollbar-width:none;z-index:3}
 #ui::-webkit-scrollbar{display:none}
 #ui .row{display:flex;align-items:center;flex:none}
-#ui button{width:26px;height:26px;flex:none}
-#ui .ax{width:auto;min-width:22px;padding:0 4px}
-.sep{width:1px;height:14px;background:#3b3b40;margin:0 3px;flex:none}
-#sl{position:absolute;left:6px;top:34px;width:118px;display:flex;flex-direction:column;gap:2px;padding:5px 8px;z-index:3}
-#sl label{display:flex;align-items:center;gap:6px;color:var(--mut);font-size:9px}
-#sl label span{width:18px;flex:none}
-#sl input{flex:1;min-width:0;height:14px;margin:0}
+#ui button{width:52px;height:52px;flex:none}
+#ui .ax{width:auto;min-width:44px;padding:0 8px}
+.sep{width:1px;height:28px;background:#3b3b40;margin:0 6px;flex:none}
+#sl{position:absolute;left:8px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:3;background:none}
+.vs{width:36px;padding:8px 0 6px;display:flex;flex-direction:column;align-items:center;background:var(--ui);border-radius:var(--r)}
+.vt{position:relative;width:36px;height:130px}
+.vt input{position:absolute;left:50%;top:50%;width:130px;height:36px;margin:0;transform:translate(-50%,-50%) rotate(-90deg)}
+.vs span{font-size:10px;color:var(--mut);margin-top:4px}
 input[type=range]{padding:0;border:0;background:transparent;-webkit-appearance:none;appearance:none}
-input[type=range]::-webkit-slider-runnable-track{height:3px;border-radius:2px;background:#3b3b40;border:0}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:10px;height:10px;margin-top:-3.5px;border-radius:50%;background:var(--ac);border:0;box-shadow:none}
-input[type=range]::-moz-range-track{height:3px;border-radius:2px;background:#3b3b40;border:0}
-input[type=range]::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:var(--ac);border:0}
-#np{position:absolute;top:34px;right:112px;padding:6px;display:none;flex-direction:column;gap:4px;z-index:4}#np.open{display:flex}
-select{height:24px;background:var(--btn);padding:0 8px;appearance:none;-webkit-appearance:none;font-size:10px}
-#np button{height:24px;background:var(--btn);padding:0 10px;font-size:10px}
-#msg{position:absolute;top:38px;left:50%;transform:translateX(-50%);background:var(--ui);padding:5px 10px;border-radius:var(--r);opacity:0;transition:opacity .3s;pointer-events:none;text-align:center;font-size:11px;z-index:5}
+input[type=range]::-webkit-slider-runnable-track{height:5px;border-radius:3px;background:#3b3b40;border:0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;margin-top:-7.5px;border-radius:50%;background:var(--ac);border:0;box-shadow:none}
+input[type=range]::-moz-range-track{height:5px;border-radius:3px;background:#3b3b40;border:0}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--ac);border:0}
+#np{position:absolute;top:62px;right:112px;padding:8px;display:none;flex-direction:column;gap:6px;z-index:4}#np.open{display:flex}
+select{height:40px;background:var(--btn);padding:0 12px;appearance:none;-webkit-appearance:none;font-size:14px}
+#np button{height:40px;background:var(--btn);padding:0 14px;font-size:14px}
+#msg{position:absolute;top:66px;left:50%;transform:translateX(-50%);background:var(--ui);padding:7px 14px;border-radius:var(--r);opacity:0;transition:opacity .3s;pointer-events:none;text-align:center;font-size:13px;z-index:5}
 #box{position:fixed;display:none;background:rgba(255,255,255,.14);border-radius:2px;pointer-events:none;z-index:4}
 #shf{position:absolute;right:14px;top:46%;width:56px;height:56px;padding:0;border-radius:50%;background:transparent;border:1.5px solid var(--mut);color:var(--mut);opacity:.85;touch-action:none;z-index:5;-webkit-touch-callout:none}
 #shf::after{display:none}
 #shf.on{background:rgba(255,255,255,.16);border-color:var(--tx);color:var(--tx);opacity:1}
 #shf.on path{fill:currentColor}
-#gzw{position:absolute;top:34px;right:6px;display:flex;flex-direction:column;align-items:center;gap:4px;z-index:2}
+#gzw{position:absolute;top:62px;right:8px;display:flex;flex-direction:column;align-items:center;gap:4px;z-index:2}
 #gz{width:96px;height:96px;touch-action:none}
-#vtog{height:22px;padding:0 10px;font-size:10px;background:var(--ui);color:var(--tx)}
+#vtog{height:30px;padding:0 14px;font-size:12px;background:var(--ui);color:var(--tx)}
 </style></head><body data-mode="sculpt">
 <div id="app"><canvas id="cv"></canvas><div id="msg"></div><div id="box"></div><button id="shf" title="Modificador (toque: fijar, mantener: temporal)"><svg class="i" viewBox="0 0 24 24" style="width:22px;height:22px"><path class="s" d="M12 5l8 14H4z"/></svg></button>
 <div id="top">
@@ -62,7 +63,7 @@ select{height:24px;background:var(--btn);padding:0 8px;appearance:none;-webkit-a
 <div class="grp" style="margin-left:auto"><button id="undo" title="Deshacer"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 4v6h6M5.6 14a8 8 0 101.9-8.4L4 10"/></svg></button><button id="exp" title="Exportar GLB"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg></button><button id="nw" title="Nuevo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 5v14M5 12h14"/></svg></button><button id="hide" title="Ocultar menú"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 9l6 6 6-6"/></svg></button></div>
 </div>
 <div id="np"><select id="shape"><option value="sphere">Esfera</option><option value="cube">Cubo</option><option value="slab">Lámina</option><option value="cyl">Cilindro</option><option value="plane">Plano</option></select><select id="res" data-m="sculpt"><option value="5000">Resolución baja</option><option value="12000" selected>Resolución media</option></select><button id="new">Crear</button></div>
-<div id="sl"><label><span>Tam</span><input id="rad" type="range" min="1" max="100" value="35"></label><label><span>Fza</span><input id="str" type="range" min="1" max="100" value="40"></label></div>
+<div id="sl"><div class="vs"><div class="vt"><input id="rad" type="range" min="1" max="100" value="35"></div><span>Tam</span></div><div class="vs"><div class="vt"><input id="str" type="range" min="1" max="100" value="40"></div><span>Fza</span></div></div>
 <div id="gzw"><canvas id="gz"></canvas><button id="vtog">Perspectiva</button></div>
 <div id="ui"><div class="row" data-m="sculpt" id="brushes"><button data-b="push" class="brush on" title="Empujar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M11 3h2v9h3l-4 5-4-5h3z"/><path class="f" d="M5 19h14v2H5z"/></svg></button><button data-b="inflate" class="brush" title="Inflar"><svg class="i" viewBox="0 0 24 24"><circle class="f" cx="12" cy="10" r="7"/><path class="f" d="M10 18h4l-1 3h-2z"/></svg></button><button data-b="smooth" class="brush" title="Suavizar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M3 12c3-5 6-5 9 0s6 5 9 0"/></svg></button><button data-b="grab" class="brush" title="Agarrar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M12 2l4 4h-3v5h5V8l4 4-4 4v-3h-5v5h3l-4 4-4-4h3v-5H6v3l-4-4 4-4v3h5V6H8z"/></svg></button><button data-b="pinch" class="brush" title="Pellizcar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 6l6 6-6 6M20 6l-6 6 6 6"/></svg></button><button data-b="paint" class="brush" title="Pintar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M12 2.5c3.5 4.2 6 7.2 6 10.5a6 6 0 01-12 0c0-3.3 2.5-6.3 6-10.5z"/></svg></button></div><div class="row" data-m="poly"><button id="pm-v" class="on" title="Vértice"><svg class="i" viewBox="0 0 24 24"><circle class="f" cx="12" cy="12" r="5"/></svg></button><button id="pm-e" title="Borde"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 18L18 6"/><circle class="f" cx="6" cy="18" r="3"/><circle class="f" cx="18" cy="6" r="3"/></svg></button><button id="pm-f" title="Cara"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M5 5h14v14H5z"/></svg></button><span class="sep"></span><button class="ax on" id="ax-l" title="Eje libre"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="12" cy="12" r="9"/><ellipse class="s" cx="12" cy="12" rx="9" ry="3.5"/><ellipse class="s" cx="12" cy="12" rx="3.5" ry="9"/></svg></button><button class="ax" id="ax-x" title="Eje"><span>X</span></button><button class="ax" id="ax-y" title="Eje"><span>Y</span></button><button class="ax" id="ax-z" title="Eje"><span>Z</span></button><span class="sep"></span><button id="ext" title="Extruir"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M6 13h12v7H6z"/><path class="f" d="M12 3l5 5h-3.5v4h-3V8H7z"/></svg></button><button id="sbd" title="Subdividir"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 4h16v16H4zM12 4v16M4 12h16"/></svg></button><button id="del" title="Borrar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 6l12 12M18 6L6 18"/></svg></button><button id="ppaint" title="Rellenar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M12 2.5c3.5 4.2 6 7.2 6 10.5a6 6 0 01-12 0c0-3.3 2.5-6.3 6-10.5z"/></svg></button><button id="pbr" title="Pincel"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M3 21l1-5L16 4l4 4L8 20z"/></svg></button><button id="toscu" title="A escultura"><svg class="i" viewBox="0 0 24 24"><circle class="f" cx="12" cy="12" r="8"/></svg></button></div></div></div>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
