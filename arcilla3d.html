@@ -11,7 +11,6 @@ html,body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--
 body[data-mode="sculpt"] [data-m="poly"],body[data-mode="poly"] [data-m="sculpt"]{display:none!important}
 body.cl #ui,body.cl #sl{display:none}
 .psel{display:contents}
-body[data-mode="poly"]:not([data-pb="1"]) #brushes{display:none!important}
 body[data-pb="1"] .psel,body[data-pb="2"] .psel{display:none!important}
 body[data-mode="poly"] #brushes [data-b="paint"]{display:none}
 button,select{font:inherit;color:var(--tx);background:transparent;border:0;border-radius:var(--r);padding:0}
@@ -25,16 +24,20 @@ button span{display:none}.ax span{display:inline;font-size:14px}
 #top{position:absolute;top:8px;left:8px;right:8px;display:flex;flex-wrap:wrap;gap:8px;pointer-events:none;z-index:3}
 #top>*{pointer-events:auto}
 .grp{display:flex;align-items:center}
-.grp button{width:48px;height:44px;flex:none}
+.grp button{width:50px;height:46px;flex:none;flex-direction:column;gap:1px}
+.grp svg.i{width:24px;height:24px}
 .grp button.tx{width:auto;padding:0 16px;font-size:14px}
-.cw{width:48px;height:44px;display:flex;align-items:center;justify-content:center}
+.cw{width:46px;height:46px;display:flex;align-items:center;justify-content:center}
 input[type=color]{width:26px;height:26px;border:0;border-radius:50%;padding:0;background:none}
 input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-webkit-color-swatch{border:0;border-radius:50%}
 input[type=color]::-moz-color-swatch{border:0;border-radius:50%}
-#ui{position:absolute;left:50%;transform:translateX(-50%);bottom:8px;max-width:calc(100% - 16px);display:flex;overflow-x:auto;scrollbar-width:none;z-index:3}
+#ui{position:absolute;left:50%;transform:translateX(-50%);bottom:8px;max-width:calc(100% - 16px);display:flex;flex-direction:column;overflow-x:auto;scrollbar-width:none;z-index:3}
 #ui::-webkit-scrollbar{display:none}
 #ui .row{display:flex;align-items:center;flex:none}
-#ui button{width:52px;height:52px;flex:none}
+#ui button{width:54px;height:54px;flex:none;flex-direction:column;gap:1px}
+#ui button.tb{width:auto;height:42px;padding:0 12px;font-size:14px;flex-direction:row;background:var(--btn);margin:0 2px}
+#ui button.tb.on{background:var(--ac);color:var(--acx)}
+#ui svg.i{width:24px;height:24px}
 #ui .ax{width:auto;min-width:44px;padding:0 8px}
 .sep{width:1px;height:28px;background:#3b3b40;margin:0 6px;flex:none}
 #sl{position:absolute;left:8px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:3;background:none}
@@ -56,7 +59,7 @@ select{height:40px;background:var(--btn);padding:0 12px;appearance:none;-webkit-
 #shf::after{display:none}
 #shf.on{background:rgba(255,255,255,.16);border-color:var(--tx);color:var(--tx);opacity:1}
 #shf.on path{fill:currentColor}
-#cp{position:absolute;bottom:72px;left:50%;transform:translateX(-50%);display:none;background:var(--ui);border-radius:var(--r);z-index:4}
+#cp{position:absolute;bottom:108px;left:50%;transform:translateX(-50%);display:none;background:var(--ui);border-radius:var(--r);z-index:4}
 body[data-pc="1"] #cp{display:flex}
 #cp button{height:38px;padding:0 14px;font-size:14px}
 #op,#bp{position:absolute;top:62px;right:112px;padding:8px;display:none;flex-direction:column;gap:6px;z-index:4;background:var(--ui);border-radius:var(--r);min-width:190px}
@@ -87,10 +90,33 @@ body[data-pc="1"] #cp{display:flex}
 #sc input{flex:1;height:30px;margin:0}
 #sc button{height:34px;background:var(--btn);padding:0 12px;font-size:13px}
 #sc button.on{background:var(--ac);color:var(--acx)}
-#tp{position:absolute;bottom:72px;left:50%;transform:translateX(-50%);display:none;align-items:center;gap:4px;background:var(--ui);border-radius:var(--r);padding:4px;z-index:4}
+#tp{position:absolute;bottom:108px;left:50%;transform:translateX(-50%);display:none;align-items:center;gap:4px;background:var(--ui);border-radius:var(--r);padding:4px;z-index:4}
 body[data-tr="1"] #tp{display:flex}
 #tp button{height:38px;padding:0 12px;font-size:14px;background:var(--btn)}
 #tp button.on{background:var(--ac);color:var(--acx)}
+#op{min-width:260px}
+.ck{flex:none!important;width:34px;padding:0!important}
+.ht{flex:none!important;width:62px;padding:0!important;font-size:12px!important}
+#tabs{display:flex;gap:2px;flex:none;padding:2px 2px 0}
+#ui #tabs button{width:auto;height:28px;padding:0 14px;font-size:12px;background:transparent;flex-direction:row}
+#ui #tabs button.on{background:var(--ac);color:var(--acx)}
+.tg{display:none;align-items:center;flex:none}
+body[data-tab="brush"] .tg[data-t="brush"],body[data-tab="sel"] .tg[data-t="sel"],body[data-tab="edit"] .tg[data-t="edit"],body[data-tab="paint"] .tg[data-t="paint"],body[data-tab="trans"] .tg[data-t="trans"],body[data-tab="obj"] .tg[data-t="obj"]{display:flex}
+.lb{display:block!important;font-size:10px;line-height:1;white-space:nowrap}
+.ax .lb{font-size:10px!important}
+#hp{position:absolute;top:62px;left:50%;transform:translateX(-50%);width:min(440px,calc(100% - 24px));max-height:calc(100% - 200px);display:none;flex-direction:column;gap:8px;background:var(--ui);border-radius:var(--r);padding:10px;z-index:6}
+#hp.open{display:flex}
+#hl{overflow-y:auto;display:flex;flex-direction:column;gap:6px}
+.hr{display:flex;gap:10px;align-items:center;font-size:13px}
+.hr svg{width:26px;height:26px;flex:none;fill:currentColor;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hr svg .f{stroke:none}.hr svg .s{fill:none}
+.hr b{font-weight:500}.hr span{color:var(--mut)}
+.hh{font-size:11px;color:var(--mut);margin-top:6px}
+#hx,#gok{height:38px;background:var(--btn);padding:0 14px;font-size:14px}
+#gd{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.55);z-index:8}
+#gd.open{display:flex}
+.gc{background:var(--ui);border-radius:var(--r);padding:16px;max-width:360px;display:flex;flex-direction:column;gap:6px;font-size:14px}
+.gc p{margin:0;color:var(--mut)}.gc b{color:var(--tx)}
 #gzw{position:absolute;top:62px;right:8px;display:flex;flex-direction:column;align-items:center;gap:4px;z-index:2}
 #gz{width:96px;height:96px;touch-action:none}
 #vtog{height:30px;padding:0 14px;font-size:12px;background:var(--ui);color:var(--tx)}
@@ -98,29 +124,27 @@ body[data-tr="1"] #tp{display:flex}
 <div id="app"><canvas id="cv"></canvas><div id="msg"></div><div id="box"></div><button id="shf" title="Modificador (toque: fijar, mantener: temporal)"><svg class="i" viewBox="0 0 24 24" style="width:22px;height:22px"><path class="s" d="M12 5l8 14H4z"/></svg></button>
 <div id="top">
 <div class="grp"><button id="mS" class="tx on">Moldear</button><button id="mP" class="tx">Poly</button></div>
-<div class="grp"><button id="sub" title="Quitar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 12h14"/></svg></button><button id="sym" class="on" title="Simetría"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M11 2h2v3h-2zm0 5h2v3h-2zm0 5h2v3h-2zm0 5h2v3h-2zM3 8h6v8H3zm12 0h6v8h-6z"/></svg></button><label class="cw" title="Color"><input id="clr" type="color" value="#c7634a"></label><button id="ptot" title="Pintar todo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><path class="f" d="M8 8h8v8H8z"/></svg></button><button id="pscale" title="Escalar y rotar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 19l6-6M5 19v-5M5 19h5M19 5l-6 6M19 5v5M19 5h-5"/></svg></button><button id="ptr" title="Transformar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 8h8v12H4z"/><path class="s" d="M13 11l7-7M14 4h6v6"/></svg></button><button id="pmesh" class="on" data-m="poly" title="Mostrar u ocultar malla"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 3l8 4.5v9L12 21l-8-4.5v-9z" stroke-width="1.6"/><path class="s" d="M12 3v18M4 7.5l16 9M20 7.5l-16 9" stroke-width="1.6"/></svg></button><button id="pobj" data-m="poly" title="Objetos"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 9h11v11H4z" stroke-width="1.7"/><path class="s" d="M9 4h11v11H9z" stroke-width="1.7"/></svg></button><button id="pbool" data-m="poly" title="Booleano"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="9" cy="12" r="6" stroke-width="1.7"/><circle class="s" cx="15" cy="12" r="6" stroke-width="1.7"/></svg></button></div>
-<div class="grp" style="margin-left:auto"><button id="undo" title="Deshacer"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 4v6h6M5.6 14a8 8 0 101.9-8.4L4 10"/></svg></button><button id="exp" title="Exportar GLB"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg></button><button id="nw" title="Nuevo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 5v14M5 12h14"/></svg></button><button id="hide" title="Ocultar menú"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 9l6 6 6-6"/></svg></button></div>
+<div class="grp"><button id="sub" title="Invertir"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 12h14"/></svg><span class="lb">Invertir</span></button><button id="sym" class="on" title="Simetría"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M11 2h2v3h-2zm0 5h2v3h-2zm0 5h2v3h-2zm0 5h2v3h-2zM3 8h6v8H3zm12 0h6v8h-6z"/></svg><span class="lb">Simetría</span></button><label class="cw" title="Color"><input id="clr" type="color" value="#c7634a"></label><button id="ptot" title="Pintar todo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><path class="f" d="M8 8h8v8H8z"/></svg><span class="lb">Pintar todo</span></button></div>
+<div class="grp" style="margin-left:auto"><button id="undo" title="Deshacer"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 4v6h6M5.6 14a8 8 0 101.9-8.4L4 10"/></svg><span class="lb">Deshacer</span></button><button id="exp" title="Exportar GLB"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg><span class="lb">Exportar</span></button><button id="nw" title="Nuevo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 5v14M5 12h14"/></svg><span class="lb">Nuevo</span></button><button id="help" title="Ayuda"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="12" cy="12" r="9"/><path class="s" d="M9.5 9.5a2.5 2.5 0 115 0c0 1.7-2.5 2-2.5 4"/><circle class="f" cx="12" cy="17" r="1.2"/></svg><span class="lb">Ayuda</span></button><button id="hide" title="Ocultar menú"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 9l6 6 6-6"/></svg><span class="lb">Ocultar</span></button></div>
 </div>
-<div id="np"><select id="shape"><option value="sphere">Esfera</option><option value="cube">Cubo</option><option value="slab">Lámina</option><option value="cyl">Cilindro</option><option value="plane">Plano</option></select><select id="res" data-m="sculpt"><option value="5000">Resolución baja</option><option value="12000" selected>Resolución media</option></select><button id="new">Crear</button></div>
-<div id="op" data-m="poly"><div id="ol"></div><div class="or"><select id="oshape"><option value="sphere">Esfera</option><option value="cube">Cubo</option><option value="slab">Lámina</option><option value="cyl">Cilindro</option><option value="plane">Plano</option></select><button id="oadd" class="od">+</button></div></div>
-<div id="bp" data-m="poly"><span class="hint">Elige qué objeto se modifica (A) y con cuál (B).</span>
-<label class="bl"><i class="ca"></i>A · el que se modifica<select id="ba"></select></label>
-<label class="bl"><i class="cb"></i>B · la herramienta<select id="bt"></select></label>
-<button id="bu"><b>Unión</b><small>A y B en un solo objeto</small></button>
-<button id="bd"><b>Restar</b><small>A pierde lo que ocupa B</small></button>
-<button id="bi"><b>Intersecar</b><small>Solo queda la zona común</small></button>
-<button id="bk">Conservar B</button></div>
+<div id="np"><select id="shape"><option value="sphere">Esfera</option><option value="cube">Cubo</option><option value="slab">Lámina</option><option value="cyl">Cilindro</option><option value="plane">Plano</option><option value="head">Cabeza</option></select><select id="res" data-m="sculpt"><option value="5000">Resolución baja</option><option value="12000" selected>Resolución media</option></select><button id="new">Crear</button></div>
+<div id="op" data-m="poly"><span class="hint">Marca como Hueco lo que quieras restar, elige objetos y pulsa Agrupar.</span><div id="ol"></div>
+<div class="or"><select id="oshape"><option value="sphere">Esfera</option><option value="cube">Cubo</option><option value="slab">Lámina</option><option value="cyl">Cilindro</option><option value="plane">Plano</option><option value="head">Cabeza</option></select><button id="oadd" class="od">+</button></div>
+<span class="hint" id="og"></span>
+<div class="or"><button id="ogrp">Agrupar</button><button id="oint">Intersecar</button></div></div>
 <div id="sc"><div class="or"><button id="scm-s" class="on">Escalar</button><button id="scm-r">Rotar</button></div>
 <div id="sg-s"><span class="hint">Escala la selección o, sin selección, todo el objeto.</span><button id="scu" class="on">Uniforme</button><label class="sl"><b>X</b><input id="sx" type="range" min="20" max="300" value="100"><span class="v" id="sxv">100%</span></label><label class="sl"><b>Y</b><input id="sy" type="range" min="20" max="300" value="100"><span class="v" id="syv">100%</span></label><label class="sl"><b>Z</b><input id="sz" type="range" min="20" max="300" value="100"><span class="v" id="szv">100%</span></label></div>
 <div id="sg-r"><span class="hint">Rota la selección o, sin selección, todo el objeto.</span><label class="sl"><b>X</b><input id="rx" type="range" min="-180" max="180" value="0"><span class="v" id="rxv">0°</span></label><label class="sl"><b>Y</b><input id="ry" type="range" min="-180" max="180" value="0"><span class="v" id="ryv">0°</span></label><label class="sl"><b>Z</b><input id="rz" type="range" min="-180" max="180" value="0"><span class="v" id="rzv">0°</span></label></div>
 <button id="sca">Anclar a la base</button></div>
-<div id="tp"><button id="tm-m" class="on">Mover</button><button id="tm-s">Estirar</button><span class="sep"></span><button id="tx-l" class="on">Libre</button><button id="tx-x">X</button><button id="tx-y">Y</button><button id="tx-z">Z</button><span class="sep"></span><button id="tvol" class="on">Volumen</button></div>
+<div id="hp"><div id="hl"></div><button id="hx">Cerrar</button></div>
+<div id="gd"><div class="gc"><b>Bienvenido a Arcilla 3D</b><p>1. Arriba eliges <b>Moldear</b> (esculpir como arcilla) o <b>Poly</b> (editar caras y vértices).</p><p>2. Abajo, las <b>pestañas</b> agrupan las herramientas.</p><p>3. A la izquierda cambias el <b>tamaño</b> y la <b>fuerza</b> del pincel.</p><p>4. Con <b>?</b> ves qué hace cada botón.</p><button id="gok">Entendido</button></div></div>
 <div id="sl"><div class="vs"><div class="vt"><input id="rad" type="range" min="1" max="100" value="35"></div><span>Tam</span></div><div class="vs"><div class="vt"><input id="str" type="range" min="1" max="300" value="40"></div><span>Fza</span></div></div>
 <div id="cp" data-m="poly"><button id="cm-s" class="on">Dividir</button><button id="cm-l">Quitar izq.</button><button id="cm-r">Quitar der.</button><button id="cm-f" class="on">Rellenar</button></div>
 <svg id="ringsvg" style="position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;display:none;z-index:3"><circle id="ringc" r="40" fill="none" stroke="rgba(224,92,92,.9)" stroke-width="1.5"/></svg>
 <svg id="cutsvg" style="position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;display:none;z-index:4"><line id="cutln" stroke="#fff" stroke-width="1.5" stroke-dasharray="6 4"/></svg>
 <div id="gzw"><canvas id="gz"></canvas><button id="vtog">Perspectiva</button></div>
-<div id="ui"><div class="row" id="brushes"><button data-b="clay" class="brush" title="Arcilla"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M3 18h18v3H3z"/><path class="f" d="M5 16c0-4 3-7 7-7s7 3 7 7z"/></svg></button><button data-b="push" class="brush on" title="Empujar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M9 5.5a1.5 1.5 0 013 0V12H9z"/><path class="f" d="M12.5 11.5v-1.3a1.1 1.1 0 012.2 0v1.3zM14.8 11.5v-1a1.1 1.1 0 012.2 0v1zM17.1 11.5v-.6a1.1 1.1 0 012.2 0v.6z"/><path class="f" d="M7 11.5h12.3v6a3.5 3.5 0 01-3.5 3.5h-5.1a3.5 3.5 0 01-2.7-1.3l-2.9-3.6a1.3 1.3 0 012-1.6L7 15.6z"/><path class="s" d="M4.8 3.2l1.6 1.6M2.6 7.4h2.2M8 1.2v2" stroke-width="1.7"/></svg></button><button data-b="inflate" class="brush" title="Inflar"><svg class="i" viewBox="0 0 24 24"><circle class="f" cx="12" cy="10" r="7"/><path class="f" d="M10 18h4l-1 3h-2z"/></svg></button><button data-b="smooth" class="brush" title="Suavizar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M12 2.5c3.5 4.2 6 7.2 6 10.5a6 6 0 01-12 0c0-3.3 2.5-6.3 6-10.5z"/></svg></button><button data-b="grab" class="brush" title="Mover"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M12 2l4 4h-3v5h5V8l4 4-4 4v-3h-5v5h3l-4 4-4-4h3v-5H6v3l-4-4 4-4v3h5V6H8z"/></svg></button><button data-b="drag" class="brush" title="Arrastrar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 19c0-6 6-3 8-8s6-4 8-7"/><circle class="f" cx="20" cy="4" r="2.2"/></svg></button><button data-b="pinch" class="brush" title="Pellizcar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 6l6 6-6 6M20 6l-6 6 6 6"/></svg></button><button data-b="flatten" class="brush" title="Aplanar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M3 15h18v3H3z"/><path class="s" d="M3 10c2-3 4 1 6-1s4 2 6-1 4 1 6 0" stroke-width="1.6" stroke-dasharray="2 2"/></svg></button><button data-b="paint" class="brush" title="Pintar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M20.7 3.3a2 2 0 00-2.8 0L10 11.2l2.8 2.8 7.9-7.9a2 2 0 000-2.8z"/><path class="f" d="M9 12.5c-2 0-3.5 1.5-3.5 3.5 0 1.2-.6 2.2-1.6 3 1 .5 2.1.7 3.2.7 2.6 0 4.4-1.6 4.4-3.9z"/></svg></button></div><div class="row" data-m="poly"><span class="psel"><button id="pm-v" class="on" title="Vértice"><svg class="i" viewBox="0 0 24 24"><circle class="f" cx="12" cy="12" r="5"/></svg></button><button id="pm-e" title="Borde"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 18L18 6"/><circle class="f" cx="6" cy="18" r="3"/><circle class="f" cx="18" cy="6" r="3"/></svg></button><button id="pm-f" title="Cara"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M5 5h14v14H5z"/></svg></button><button id="psa" title="Seleccionar todo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 5h14v14H5z" stroke-dasharray="3 2.5" stroke-width="1.6"/><circle class="f" cx="5" cy="5" r="2"/><circle class="f" cx="19" cy="5" r="2"/><circle class="f" cx="5" cy="19" r="2"/><circle class="f" cx="19" cy="19" r="2"/></svg></button><span class="sep"></span><button class="ax on" id="ax-l" title="Eje libre"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="12" cy="12" r="9"/><ellipse class="s" cx="12" cy="12" rx="9" ry="3.5"/><ellipse class="s" cx="12" cy="12" rx="3.5" ry="9"/></svg></button><button class="ax" id="ax-x" title="Eje"><span>X</span></button><button class="ax" id="ax-y" title="Eje"><span>Y</span></button><button class="ax" id="ax-z" title="Eje"><span>Z</span></button><span class="sep"></span><button id="ext" title="Extruir"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M6 13h12v7H6z"/><path class="f" d="M12 3l5 5h-3.5v4h-3V8H7z"/></svg></button><button id="sbd" title="Subdividir"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 4h16v16H4zM12 4v16M4 12h16"/></svg></button><button id="del" title="Borrar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 6l12 12M18 6L6 18"/></svg></button><button id="ppaint" title="Pintar caras"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M4 13l7-7 8 8-7 7z"/><path class="f" d="M20 15c1 1.5 1.5 2.5 1.5 3.3a1.5 1.5 0 01-3 0c0-.8.5-1.8 1.5-3.3z"/></svg></button><button id="hole" title="Rellenar agujero"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="12" cy="12" r="8" stroke-dasharray="3 3"/><circle class="f" cx="12" cy="12" r="4"/></svg></button><button id="pcut" title="Cortar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 7h14v12H5z"/><path class="s" d="M3 21L21 3"/></svg></button></span><button id="pbr" title="Pinceles"><svg class="i" viewBox="0 0 24 24"><path class="f" fill-rule="evenodd" d="M6 2h12v6H6zM8.6 3.6v3.2h.9V3.6zM11.5 4.2v2.6h.9V4.2zM14.4 3.6v3.2h.9V3.6z"/><path class="f" d="M6 9h12v3.2H6z"/><path class="f" fill-rule="evenodd" d="M9.2 12.8h5.6l-.9 7.7a2 2 0 01-3.8 0zM12 18.3m-.8 0a.8.8 0 101.6 0 .8.8 0 10-1.6 0z"/></svg></button><button id="pnt" title="Pintar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M20.7 3.3a2 2 0 00-2.8 0L10 11.2l2.8 2.8 7.9-7.9a2 2 0 000-2.8z"/><path class="f" d="M9 12.5c-2 0-3.5 1.5-3.5 3.5 0 1.2-.6 2.2-1.6 3 1 .5 2.1.7 3.2.7 2.6 0 4.4-1.6 4.4-3.9z"/></svg></button><span class="psel"><button id="toscu" title="A moldear"><svg class="i" viewBox="0 0 24 24"><circle class="f" cx="12" cy="12" r="8"/></svg></button></span></div></div></div>
+<div id="ui"><div id="tabs"></div><div class="tg" id="brushes" data-t="brush"><button data-b="clay" class="brush" title="Arcilla"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M3 18h18v3H3z"/><path class="f" d="M5 16c0-4 3-7 7-7s7 3 7 7z"/></svg><span class="lb">Arcilla</span></button><button data-b="push" class="brush on" title="Empujar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M9 5.5a1.5 1.5 0 013 0V12H9z"/><path class="f" d="M12.5 11.5v-1.3a1.1 1.1 0 012.2 0v1.3zM14.8 11.5v-1a1.1 1.1 0 012.2 0v1zM17.1 11.5v-.6a1.1 1.1 0 012.2 0v.6z"/><path class="f" d="M7 11.5h12.3v6a3.5 3.5 0 01-3.5 3.5h-5.1a3.5 3.5 0 01-2.7-1.3l-2.9-3.6a1.3 1.3 0 012-1.6L7 15.6z"/><path class="s" d="M4.8 3.2l1.6 1.6M2.6 7.4h2.2M8 1.2v2" stroke-width="1.7"/></svg><span class="lb">Empujar</span></button><button data-b="inflate" class="brush" title="Inflar"><svg class="i" viewBox="0 0 24 24"><circle class="f" cx="12" cy="10" r="7"/><path class="f" d="M10 18h4l-1 3h-2z"/></svg><span class="lb">Inflar</span></button><button data-b="smooth" class="brush" title="Suavizar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M12 2.5c3.5 4.2 6 7.2 6 10.5a6 6 0 01-12 0c0-3.3 2.5-6.3 6-10.5z"/></svg><span class="lb">Suavizar</span></button><button data-b="grab" class="brush" title="Mover"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M12 2l4 4h-3v5h5V8l4 4-4 4v-3h-5v5h3l-4 4-4-4h3v-5H6v3l-4-4 4-4v3h5V6H8z"/></svg><span class="lb">Mover</span></button><button data-b="drag" class="brush" title="Arrastrar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 19c0-6 6-3 8-8s6-4 8-7"/><circle class="f" cx="20" cy="4" r="2.2"/></svg><span class="lb">Arrastrar</span></button><button data-b="pinch" class="brush" title="Pellizcar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 6l6 6-6 6M20 6l-6 6 6 6"/></svg><span class="lb">Pellizcar</span></button><button data-b="flatten" class="brush" title="Aplanar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M3 15h18v3H3z"/><path class="s" d="M3 10c2-3 4 1 6-1s4 2 6-1 4 1 6 0" stroke-width="1.6" stroke-dasharray="2 2"/></svg><span class="lb">Aplanar</span></button><button data-b="paint" class="brush" title="Pintar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M20.7 3.3a2 2 0 00-2.8 0L10 11.2l2.8 2.8 7.9-7.9a2 2 0 000-2.8z"/><path class="f" d="M9 12.5c-2 0-3.5 1.5-3.5 3.5 0 1.2-.6 2.2-1.6 3 1 .5 2.1.7 3.2.7 2.6 0 4.4-1.6 4.4-3.9z"/></svg><span class="lb">Pintar</span></button></div><div class="tg" data-t="sel" data-m="poly"><button id="pm-v" class="on" title="Vértice"><svg class="i" viewBox="0 0 24 24"><circle class="f" cx="12" cy="12" r="5"/></svg><span class="lb">Vértice</span></button><button id="pm-e" title="Borde"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 18L18 6"/><circle class="f" cx="6" cy="18" r="3"/><circle class="f" cx="18" cy="6" r="3"/></svg><span class="lb">Borde</span></button><button id="pm-f" title="Cara"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M5 5h14v14H5z"/></svg><span class="lb">Cara</span></button><button id="psa" title="Seleccionar todo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 5h14v14H5z" stroke-dasharray="3 2.5" stroke-width="1.6"/><circle class="f" cx="5" cy="5" r="2"/><circle class="f" cx="19" cy="5" r="2"/><circle class="f" cx="5" cy="19" r="2"/><circle class="f" cx="19" cy="19" r="2"/></svg><span class="lb">Todo</span></button><span class="sep"></span><button class="ax on" id="ax-l" title="Eje libre"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="12" cy="12" r="9"/><ellipse class="s" cx="12" cy="12" rx="9" ry="3.5"/><ellipse class="s" cx="12" cy="12" rx="3.5" ry="9"/></svg><span class="lb">Libre</span></button><button class="ax" id="ax-x" title="Eje"><span>X</span></button><button class="ax" id="ax-y" title="Eje"><span>Y</span></button><button class="ax" id="ax-z" title="Eje"><span>Z</span></button><span class="sep"></span><button id="pmesh" class="on" data-m="poly" title="Mostrar u ocultar malla"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 3l8 4.5v9L12 21l-8-4.5v-9z" stroke-width="1.6"/><path class="s" d="M12 3v18M4 7.5l16 9M20 7.5l-16 9" stroke-width="1.6"/></svg><span class="lb">Malla</span></button></div><div class="tg" data-t="edit" data-m="poly"><button id="ext" title="Extruir"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M6 13h12v7H6z"/><path class="f" d="M12 3l5 5h-3.5v4h-3V8H7z"/></svg><span class="lb">Extruir</span></button><button id="sbd" title="Subdividir"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 4h16v16H4zM12 4v16M4 12h16"/></svg><span class="lb">Subdividir</span></button><button id="del" title="Borrar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 6l12 12M18 6L6 18"/></svg><span class="lb">Borrar</span></button><button id="hole" title="Rellenar agujero"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="12" cy="12" r="8" stroke-dasharray="3 3"/><circle class="f" cx="12" cy="12" r="4"/></svg><span class="lb">Rellenar</span></button><button id="pcut" title="Cortar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 7h14v12H5z"/><path class="s" d="M3 21L21 3"/></svg><span class="lb">Cortar</span></button><button id="toscu" title="A moldear"><svg class="i" viewBox="0 0 24 24"><circle class="f" cx="12" cy="12" r="8"/></svg><span class="lb">A moldear</span></button></div><div class="tg" data-t="paint" data-m="poly"><button id="pnt" title="Pintar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M20.7 3.3a2 2 0 00-2.8 0L10 11.2l2.8 2.8 7.9-7.9a2 2 0 000-2.8z"/><path class="f" d="M9 12.5c-2 0-3.5 1.5-3.5 3.5 0 1.2-.6 2.2-1.6 3 1 .5 2.1.7 3.2.7 2.6 0 4.4-1.6 4.4-3.9z"/></svg><span class="lb">Pintar</span></button><button id="ppaint" title="Pintar caras"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M4 13l7-7 8 8-7 7z"/><path class="f" d="M20 15c1 1.5 1.5 2.5 1.5 3.3a1.5 1.5 0 01-3 0c0-.8.5-1.8 1.5-3.3z"/></svg><span class="lb">Pintar caras</span></button></div><div class="tg" data-t="trans"><button id="tm-m" class="tb on">Mover</button><button id="tm-s" class="tb">Estirar</button><span class="sep"></span><button id="tx-l" class="tb on">Libre</button><button id="tx-x" class="tb">X</button><button id="tx-y" class="tb">Y</button><button id="tx-z" class="tb">Z</button><span class="sep"></span><button id="tvol" class="tb on">Volumen</button><span class="sep"></span><button id="pscale" title="Escalar y rotar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 19l6-6M5 19v-5M5 19h5M19 5l-6 6M19 5v5M19 5h-5"/></svg><span class="lb">Escala/giro</span></button></div><div class="tg" data-t="obj" data-m="poly"><button id="pobj" data-m="poly" title="Objetos"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 9h11v11H4z" stroke-width="1.7"/><path class="s" d="M9 4h11v11H9z" stroke-width="1.7"/></svg><span class="lb">Objetos</span></button><button id="dup" title="Duplicar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M8 8h11v11H8z"/><path class="s" d="M5 16V5h11"/></svg><span class="lb">Duplicar</span></button><button id="mir" title="Espejo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 3v18" stroke-dasharray="2 2"/><path class="f" d="M4 7l6 5-6 5zM20 7l-6 5 6 5z"/></svg><span class="lb">Espejo</span></button></div></div><button id="ptr" hidden></button><button id="pbr" hidden></button>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/TrackballControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/exporters/GLTFExporter.js"></script>
@@ -371,9 +395,34 @@ let curShape='sphere';let mode='sculpt',pm='v',axis=null,selV=new Set(),selE=new
 const pg=new THREE.Group();scene.add(pg);pg.visible=false;
 const key=(a,b)=>a<b?a+','+b:b+','+a,$$=(id,f)=>{$(id).onclick=f};
 function clearSel(){selV.clear();selE.clear();selF.clear()}
+function headMesh(){
+  const T=[[.80,.12,.12,.12],[.74,.34,.32,.36],[.62,.50,.48,.54],[.45,.59,.55,.61],[.25,.61,.61,.60],[.10,.58,.60,.57],[-.05,.55,.58,.52],[-.25,.50,.54,.46],[-.45,.44,.50,.40],[-.62,.38,.47,.34],[-.72,.32,.45,.30],[-.78,.25,.32,.26],[-.90,.22,.27,.23],[-1.2,.22,.27,.25]];
+  const Y=[.80,.77,.72,.66,.59,.52,.45,.38,.31,.24,.17,.10,.03,-.04,-.11,-.18,-.25,-.32,-.39,-.46,-.53,-.60,-.66,-.72,-.76,-.80,-.88,-.98,-1.10,-1.20],n=30;
+  const sm=(a,b,x)=>{const t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t)},g=(x,s)=>Math.exp(-(x*x)/(2*s*s));
+  const prof=y=>{for(let i=0;i<T.length-1;i++){const a=T[i],b=T[i+1];if(y<=a[0]&&y>=b[0]){const t=(a[0]-y)/(a[0]-b[0]);return[1,2,3].map(k=>a[k]+(b[k]-a[k])*t)}}return T[T.length-1].slice(1)};
+  const v=[],f=[];
+  Y.forEach(y=>{const[rx,rf,rb]=prof(y);
+    for(let i=0;i<n;i++){const th=2*Math.PI*i/n,s=Math.sin(th),c=Math.cos(th),fr=sm(0,.45,c);
+      let x=rx*s,z=c*(c>=0?rf:rb);const ax=Math.abs(x);
+      z+=.34*g(x/.085,1)*g((y+.08)/.22,1)*fr;                              // nariz
+      z+=.06*g((ax-.11)/.05,1)*g((y+.2)/.05,1)*fr;                         // alas de la nariz
+      z+=.07*g(x/.42,1)*g((y-.22)/.06,1)*fr;                               // arcos de las cejas
+      z-=.1*g((ax-.27)/.1,1)*g((y-.14)/.075,1)*fr;                         // cuencas
+      z+=.03*g((ax-.27)/.1,1)*g((y-.2)/.03,1)*fr;                          // párpados
+      z+=.07*g((ax-.44)/.13,1)*g((y+.1)/.13,1)*fr;                         // pómulos
+      z-=.06*g(x/.22,1)*g((y+.5)/.03,1)*fr;                                // línea de la boca
+      z+=.05*g(x/.16,1)*g((y+.44)/.045,1)*fr+.055*g(x/.16,1)*g((y+.58)/.045,1)*fr; // labios
+      z+=.18*g(x/.25,1)*g((y+.74)/.07,1)*fr;                               // mentón
+      x+=Math.sign(s)*.17*g((y+.02)/.17,1)*(Math.abs(s)>.88?1:0);          // orejas
+      v.push([x,y,z])}});
+  const m=Y.length;
+  for(let j=0;j<m-1;j++)for(let i=0;i<n;i++){const a=j*n+i,b=j*n+(i+1)%n,c=(j+1)*n+(i+1)%n,d=(j+1)*n+i;f.push([a,d,c,b])}
+  f.push([...Array(n).keys()]);f.push([...Array(n).keys()].map(i=>(m-1)*n+(n-1-i)));
+  return{v,f}}
 function newPoly(t){
   const k=.8,W=[.78,.72,.66];let v,f;
   if(t==='cube'||t==='sphere'||t==='slab'){v=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]].map(a=>a.map(x=>x*k));f=[[4,5,6,7],[1,0,3,2],[5,1,2,6],[0,4,7,3],[7,6,2,3],[0,1,5,4]]}
+  else if(t==='head'){const Hd=headMesh();v=Hd.v.map(p=>[p[0],p[1]+.2,p[2]]);f=Hd.f}
   else if(t==='plane'){v=[[-1.2,0,-1.2],[1.2,0,-1.2],[1.2,0,1.2],[-1.2,0,1.2]];f=[[3,2,1,0]]}
   else{v=[];for(const y of[-1,1])for(let i=0;i<8;i++){const a=i*Math.PI/4;v.push([Math.cos(a)*.7,y,Math.sin(a)*.7])}
     f=[];for(let i=0;i<8;i++){const j=(i+1)%8;f.push([8+i,8+j,j,i])}f.push([15,14,13,12,11,10,9,8],[0,1,2,3,4,5,6,7])}
@@ -386,16 +435,16 @@ function polyGeo(tint,Q){
   Q.f.forEach((f,fi)=>{const T=tint&&Q===P&&selF.has(fi),cl=j=>{const c=f.k[j];return T?c.map((x,q)=>x*.5+[.45,.62,.95][q]*.5):c};
     for(let k=1;k<f.i.length-1;k++){for(const j of[0,k,k+1]){pp.push(...Q.v[f.i[j]]);cc.push(...cl(j))}tf.push(fi)}});
   const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pp,3));g.setAttribute('color',new THREE.Float32BufferAttribute(cc,3));g.computeVertexNormals();return{g,tf}}
-function polyExport(){const g=new THREE.Group();OBJ.forEach(o=>{const m=new THREE.Mesh(polyGeo(false,o.P).g,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.85}));m.name=o.n;g.add(m)});return g}
+function polyExport(){const g=new THREE.Group();OBJ.forEach(o=>{if(o.hole)return;const m=new THREE.Mesh(polyGeo(false,o.P).g,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.85}));m.name=o.n;g.add(m)});return g}
 function addLines(arr,color,dt,op=1){if(!arr.length)return;const p=[];arr.forEach(([a,b])=>p.push(...P.v[a],...P.v[b]));const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(p,3));const l=new THREE.LineSegments(g,new THREE.LineBasicMaterial({color,depthTest:dt,transparent:op<1,opacity:op}));l.renderOrder=dt?1:3;pg.add(l)}
 function addPts(arr,color,size,dt,op=1){if(!arr.length)return;const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(arr.flat(),3));const o=new THREE.Points(g,new THREE.PointsMaterial({color,size,sizeAttenuation:false,depthTest:dt,transparent:op<1,opacity:op}));o.renderOrder=dt?2:4;pg.add(o)}
 function polyRebuild(){
   while(pg.children.length){const o=pg.children.pop();o.geometry.dispose()}
   const{g,tf}=polyGeo(true);tris=tf;
   fm=new THREE.Mesh(g,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.85,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1}));pg.add(fm);
-  const tn=i=>!boolOpen?[1,1,1]:i===+$('ba').value?[.7,.84,1]:i===+$('bt').value?[1,.74,.74]:[1,1,1];
-  fm.material.color.setRGB(...tn(cur));
-  OBJ.forEach((o,i)=>{if(i!==cur){const m=new THREE.Mesh(polyGeo(false,o.P).g,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.85,side:THREE.DoubleSide}));m.material.color.setRGB(...tn(i));pg.add(m)}});
+  const ghost=(m,o)=>{if(o.hole){m.transparent=true;m.opacity=.38;m.depthWrite=false;m.color.setRGB(.6,.78,1)}};
+  ghost(fm.material,OBJ[cur]);
+  OBJ.forEach((o,i)=>{if(i!==cur){const m=new THREE.Mesh(polyGeo(false,o.P).g,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.85,side:THREE.DoubleSide}));ghost(m.material,o);pg.add(m)}});
   const es=new Map();P.f.forEach(f=>f.i.forEach((a,k)=>es.set(key(a,f.i[(k+1)%f.i.length]),[a,f.i[(k+1)%f.i.length]])));EDG=[...es.entries()];
   if(showMesh)addLines(EDG.map(e=>e[1]),0x8c8c93,true,.35);
   const mp=e=>{const A=P.v[e[0]],B=P.v[e[1]];return[(A[0]+B[0])/2,(A[1]+B[1])/2,(A[2]+B[2])/2]};
@@ -512,11 +561,11 @@ function toSculpt(q,round,stay){
     const m=(a,b)=>{const k=key(a,b);let r=mid.get(k);if(r===undefined){r=V.length;V.push(V[a].map((x,i)=>(x+V[b][i])/2));col.push(col[a].map((x,i)=>(x+col[b][i])/2));mid.set(k,r)}return r};
     for(const[a,b,c]of T){const ab=m(a,b),bc=m(b,c),ca=m(c,a);nt.push([a,ab,ca],[b,bc,ab],[c,ca,bc],[ab,bc,ca])}T=nt}
   const nb=V.map(()=>new Set());T.forEach(([a,b,c])=>{nb[a].add(b).add(c);nb[b].add(a).add(c);nb[c].add(a).add(b)});
-  for(let it=0;it<10;it++)V=V.map((v,i)=>{const s=[0,0,0];nb[i].forEach(j=>{s[0]+=V[j][0];s[1]+=V[j][1];s[2]+=V[j][2]});const n=nb[i].size||1;return[0,1,2].map(k=>v[k]+(s[k]/n-v[k])*.5)});
+  for(let it=0;it<(curShape==='head'?2:10);it++)V=V.map((v,i)=>{const s=[0,0,0];nb[i].forEach(j=>{s[0]+=V[j][0];s[1]+=V[j][1];s[2]+=V[j][2]});const n=nb[i].size||1;return[0,1,2].map(k=>v[k]+(s[k]/n-v[k])*.5)});
   if(round)V=V.map(v=>{const l=Math.hypot(...v)||1;return v.map(x=>x/l*.9)});
   const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(V.flat(),3));g.setAttribute('color',new THREE.Float32BufferAttribute(col.flat(),3));g.setIndex(new THREE.BufferAttribute(new Uint32Array(T.flat()),1));
   install(g);setMode(stay?mode:'sculpt');if(q!==1)msg('Malla subdividida y suavizada, lista para moldear')}
-function setMode(m){mode=m;if(m==='sculpt'&&pbMode)setPb(0);$('shape').value=curShape;document.body.dataset.mode=m;mesh.visible=m==='sculpt';pg.visible=m==='poly';$('mS').classList.toggle('on',m==='sculpt');$('mP').classList.toggle('on',m==='poly');controls.enabled=true;pd=null}
+function setMode(m){const prevMode=mode;mode=m;if(m==='sculpt'&&pbMode)setPb(0);$('shape').value=curShape;document.body.dataset.mode=m;mesh.visible=m==='sculpt';pg.visible=m==='poly';$('mS').classList.toggle('on',m==='sculpt');$('mP').classList.toggle('on',m==='poly');controls.enabled=true;pd=null;setTab(prevMode===m?tab:TABS[m][0][0])}
 function setPm(m){pm=m;setPb(0);if(pcut)setCut(false);clearSel();['v','e','f'].forEach(k=>$('pm-'+k).classList.toggle('on',k===m));polyRebuild()}
 function setAxis(a){axis=a;['l','x','y','z'].forEach(k=>$('ax-'+k).classList.toggle('on',(a||'l')===k))}
 $$('mS',()=>setMode('sculpt'));$$('mP',()=>setMode('poly'));$$('hide',()=>document.body.classList.toggle('cl'));$$('nw',()=>togglePanel('np'));$('ui').addEventListener('click',e=>{const b=e.target.closest('button');if(b&&b.title)msg(b.title)});
@@ -657,47 +706,47 @@ function cToMesh(polys){const v=[],map=new Map(),f=[];
     ii.forEach((x,j)=>{if(x!==ii[(j+ii.length-1)%ii.length]){I.push(x);K.push(po.v[j].c)}});
     if(I.length>2&&new Set(I).size===I.length)f.push({i:I,k:K})});
   return{v,f}}
-let objN=1,keepB=false;
-let boolOpen=false;
-function setBoolDefaults(){const A=$('ba'),B=$('bt');A.value=String(cur);const k=OBJ.findIndex((o,i)=>i!==cur);B.value=k<0?'':String(k)}
+let objN=1;
 function togglePanel(id){
-  ['np','op','bp','sc'].forEach(p=>$(p).classList.toggle('open',p===id&&!$(p).classList.contains('open')));
-  if(id==='op'||id==='bp')refreshObjs();
-  boolOpen=$('bp').classList.contains('open');if(boolOpen)setBoolDefaults();polyRebuild()}
+  ['np','op','sc'].forEach(p=>$(p).classList.toggle('open',p===id&&!$(p).classList.contains('open')));
+  if(id==='op')refreshObjs()}
+function groupUse(){const all=OBJ.map((o,i)=>i),ch=all.filter(i=>OBJ[i].sel);return ch.length>1?ch:all}
 function refreshObjs(){
   const L=$('ol');L.innerHTML='';
   OBJ.forEach((o,i)=>{const r=document.createElement('div');r.className='or';
-    const b=document.createElement('button');b.textContent=o.n;if(i===cur)b.className='on';
-    b.onclick=()=>{cur=i;clearSel();polyRebuild();refreshObjs()};
+    const k=document.createElement('button');k.className='ck'+(o.sel?' on':'');k.textContent=o.sel?'✓':'';k.title='Seleccionar';k.onclick=()=>{o.sel=!o.sel;refreshObjs()};
+    const b=document.createElement('button');b.textContent=o.n;if(i===cur)b.className='on';b.onclick=()=>{cur=i;clearSel();polyRebuild();refreshObjs()};
+    const h=document.createElement('button');h.className='ht'+(o.hole?' on':'');h.textContent=o.hole?'Hueco':'Sólido';h.onclick=()=>{psnap();o.hole=!o.hole;polyRebuild();refreshObjs()};
     const d=document.createElement('button');d.textContent='×';d.className='od';d.onclick=()=>delObj(i);
-    r.append(b,d);L.append(r)});
-  const A=$('ba'),B=$('bt'),oa=A.value,ob=B.value;A.innerHTML='';B.innerHTML='';
-  OBJ.forEach((o,i)=>[A,B].forEach(S=>{const op=document.createElement('option');op.value=i;op.textContent=o.n;S.append(op)}));
-  A.value=OBJ[+oa]&&oa!==''?oa:String(cur);
-  if(OBJ[+ob]&&ob!==''&&ob!==A.value)B.value=ob;else{const k=OBJ.findIndex((o,i)=>String(i)!==A.value);B.value=k<0?'':String(k)}}
+    r.append(k,b,h,d);L.append(r)});
+  const use=groupUse(),so=use.filter(i=>!OBJ[i].hole).length,ho=use.length-so;
+  $('og').textContent=use.length<2?'Agrega otro objeto para combinar.':'Agrupar: '+so+(so===1?' sólido':' sólidos')+(ho?' menos '+ho+(ho===1?' hueco':' huecos'):'')+'.'}
 function delObj(i){
   if(OBJ.length<2)return msg('Debe quedar al menos un objeto');
   psnap();OBJ.splice(i,1);if(i<cur)cur--;if(cur>=OBJ.length)cur=OBJ.length-1;
   clearSel();polyRebuild();refreshObjs()}
 function addObj(){
   psnap();OBJ.push({n:'Objeto '+(++objN),P:null});cur=OBJ.length-1;newPoly($('oshape').value);refreshObjs();msg('Objeto agregado')}
-function doBool(op){
-  let ai=+$('ba').value,bi=+$('bt').value;
-  if(!OBJ[ai]||!OBJ[bi])return msg('Agrega otro objeto con el botón + de Objetos');
-  if(ai===bi)return msg('A y B deben ser objetos distintos');
-  const A=OBJ[ai].P,B=OBJ[bi].P,na=OBJ[ai].n,nb=OBJ[bi].n;
-  if(cPolys(A).length+cPolys(B).length>6000)return msg('Mallas demasiado densas para el booleano');
-  psnap();let polys;
-  try{polys=csgOp(A,B,op)}catch(e){H.poly.pop();return msg('No pude completar el booleano')}
-  const R=cToMesh(polys);if(!R.f.length){H.poly.pop();return msg('El resultado quedó vacío')}
-  OBJ[ai].P=R;if(!keepB){OBJ.splice(bi,1);if(bi<ai)ai--}
-  cur=ai;$('bp').classList.remove('open');boolOpen=false;
-  clearSel();polyRebuild();refreshObjs();
-  msg(op==='u'?na+' + '+nb:op==='d'?na+' − '+nb:na+' ∩ '+nb)}
-$$('pobj',()=>togglePanel('op'));$$('pbool',()=>togglePanel('bp'));$$('oadd',addObj);
-['ba','bt'].forEach(id=>{$(id).onchange=()=>polyRebuild()});
-$$('bu',()=>doBool('u'));$$('bd',()=>doBool('d'));$$('bi',()=>doBool('i'));
-$$('bk',()=>{keepB=!keepB;$('bk').classList.toggle('on',keepB)});
+function groupObjs(op){
+  const use=groupUse();if(use.length<2)return msg('Agrega o elige al menos dos objetos');
+  const solids=use.filter(i=>!OBJ[i].hole),holes=use.filter(i=>OBJ[i].hole);
+  if(!solids.length)return msg('Necesitas al menos un objeto sólido');
+  if(op==='i'&&solids.length<2)return msg('Intersecar necesita dos objetos sólidos');
+  const target=op==='i'?solids:use;
+  if(target.reduce((n,i)=>n+cPolys(OBJ[i].P).length,0)>6000)return msg('Mallas demasiado densas para combinar');
+  psnap();
+  try{
+    let R=OBJ[solids[0]].P;const chk=X=>{if(cPolys(R).length+cPolys(X).length>9000)throw new Error('big')};
+    for(const i of solids.slice(1)){chk(OBJ[i].P);R=cToMesh(csgOp(R,OBJ[i].P,op==='i'?'i':'u'))}
+    if(op!=='i')for(const i of holes){const X=JSON.parse(JSON.stringify(OBJ[i].P)),c=R.f.length?R.f[0].k[0]:[.78,.72,.66];
+      X.f.forEach(f=>{f.k=f.k.map(()=>c.slice())});chk(X);R=cToMesh(csgOp(R,X,'d'))}
+    if(!R.f.length){H.poly.pop();return msg('El resultado quedó vacío')}
+    const keep=OBJ[solids[0]],rm=new Set(target.filter(i=>i!==solids[0]).map(i=>OBJ[i]));
+    keep.P=R;keep.hole=false;OBJ=OBJ.filter(o=>!rm.has(o));cur=OBJ.indexOf(keep);OBJ.forEach(o=>{o.sel=false})
+  }catch(e){H.poly.pop();return msg('No pude completar la operación')}
+  clearSel();polyRebuild();refreshObjs();msg(op==='i'?'Intersección aplicada':'Objetos agrupados')}
+$$('pobj',()=>togglePanel('op'));$$('oadd',addObj);
+$$('ogrp',()=>groupObjs('u'));$$('oint',()=>groupObjs('i'));
 let scB=null;
 function scBegin(){
   if(scB)return;
@@ -770,6 +819,44 @@ $$('ptr',()=>setTrans(!ptrans));
 [['m','m'],['s','s']].forEach(([k,m])=>$$('tm-'+k,()=>{tMode=m;['m','s'].forEach(x=>$('tm-'+x).classList.toggle('on',x===k))}));
 [['l',null],['x','x'],['y','y'],['z','z']].forEach(([k,a])=>$$('tx-'+k,()=>{tAxis=a;['l','x','y','z'].forEach(x=>$('tx-'+x).classList.toggle('on',x===k))}));
 $$('tvol',()=>{tVol=!tVol;$('tvol').classList.toggle('on',tVol)});
+
+const TABS={sculpt:[['brush','Pinceles'],['trans','Transformar']],poly:[['sel','Seleccionar'],['edit','Editar'],['paint','Pintar'],['brush','Pinceles'],['trans','Transformar'],['obj','Objetos']]};
+let tab='brush';
+function buildTabs(){const T=$('tabs');T.innerHTML='';
+  TABS[mode].forEach(([k,l])=>{const b=document.createElement('button');b.textContent=l;if(tab===k)b.className='on';b.onclick=()=>setTab(k);T.append(b)})}
+function setTab(t){
+  if(!TABS[mode].some(x=>x[0]===t))t=TABS[mode][0][0];
+  tab=t;document.body.dataset.tab=t;
+  if(ptrans&&t!=='trans')setTrans(false);
+  if(mode==='poly'){
+    if(pcut&&t!=='edit')setCut(false);
+    if(pbMode===1&&t!=='brush')setPb(0);
+    if(pbMode===2&&t!=='paint')setPb(0);
+    if(t==='brush'&&pbMode!==1)setPb(1)}
+  if(t==='trans'&&!ptrans)setTrans(true);
+  ['np','op','sc','hp'].forEach(p=>$(p).classList.remove('open'));
+  if(t==='obj'&&mode==='poly'){$('op').classList.add('open');refreshObjs()}
+  buildTabs()}
+function dupObj(mirror){
+  psnap();const src=JSON.parse(JSON.stringify(P));
+  if(mirror){src.v=src.v.map(v=>[-v[0],v[1],v[2]]);src.f.forEach(f=>{f.i.reverse();f.k.reverse()})}
+  else src.v=src.v.map(v=>[v[0]+.35,v[1],v[2]]);
+  OBJ.push({n:OBJ[cur].n+(mirror?' espejo':' copia'),P:src});cur=OBJ.length-1;clearSel();polyRebuild();refreshObjs();
+  msg(mirror?'Copia en espejo creada':'Objeto duplicado')}
+$$('dup',()=>dupObj(false));$$('mir',()=>dupObj(true));
+const HELP=[['h','Moldear: pinceles'],['clay','Arcilla','Construye capas planas. Con Invertir, talla.'],['push','Empujar','Empuja la superficie; con Invertir, la hunde.'],['inflate','Inflar','Infla la zona como un globo.'],['smooth','Suavizar','Alisa. Con Fuerza alta alisa más; con Invertir relaja sin perder la forma.'],['grab','Mover','Agarra una zona y la mueve. Con radio grande deforma toda la pieza.'],['drag','Arrastrar','La zona te sigue a lo largo del trazo, para alargar formas.'],['pinch','Pellizcar','Junta la superficie hacia el trazo para marcar bordes.'],['flatten','Aplanar','Aplana la zona; con Invertir, la rellena.'],['paint','Pintar','Pinta con el color elegido.'],
+ ['h','Poly: selección y edición'],['pm-v','Vértice / Borde / Cara','Elige qué tipo de elemento seleccionas. Tocar selecciona; arrastrar lo mueve.'],['psa','Todo','Selecciona o limpia todo.'],['ax-l','Libre / X / Y / Z','Limita el movimiento a un eje.'],['pmesh','Malla','Muestra u oculta nodos y líneas.'],['ext','Extruir','Saca las caras seleccionadas.'],['sbd','Subdividir','Parte las caras en más.'],['del','Borrar','Quita lo seleccionado.'],['hole','Rellenar','Tapa un agujero: selecciona los vértices o bordes de su contorno.'],['pcut','Cortar','Dibuja una línea sobre la pieza para cortarla.'],['toscu','A moldear','Pasa el objeto a Moldear para esculpirlo.'],['ppaint','Pintar caras','Pinta las caras seleccionadas.'],['pnt','Pintar','Pintura libre sobre la pieza.'],
+ ['h','Transformar y objetos'],['pscale','Escala y giro','Estira, encoge o gira la pieza o la selección con sliders.'],['pobj','Objetos','Lista de objetos. Marca uno como Hueco para restarlo al Agrupar.'],['dup','Duplicar','Crea una copia del objeto.'],['mir','Espejo','Crea una copia reflejada, útil para orejas y patas.'],
+ ['h','Barra superior'],['sub','Invertir','Invierte el pincel (hunde en vez de empujar, separa en vez de juntar).'],['sym','Simetría','Repite el trazo al otro lado.'],['ptot','Pintar todo','Pinta toda la pieza con el color elegido.'],['undo','Deshacer','Vuelve al paso anterior.'],['exp','Exportar','Descarga el archivo GLB para Blender.'],['nw','Nuevo','Cambia la forma inicial (esfera, cubo, cabeza...).']];
+function buildHelp(){const L=$('hl');L.innerHTML='';
+  HELP.forEach(h=>{const r=document.createElement('div');
+    if(h[0]==='h'){r.className='hh';r.textContent=h[1];L.append(r);return}
+    r.className='hr';const el=document.getElementById(h[0])||document.querySelector('[data-b="'+h[0]+'"]'),sv=el&&el.querySelector('svg');
+    r.innerHTML=(sv?sv.outerHTML:'<svg></svg>')+'<div><b>'+h[1]+'</b><br><span>'+h[2]+'</span></div>';L.append(r)})}
+$$('help',()=>{const o=$('hp').classList.toggle('open');['np','op','sc'].forEach(p=>$(p).classList.remove('open'));if(o)buildHelp()});
+$$('hx',()=>$('hp').classList.remove('open'));
+$$('gok',()=>{$('gd').classList.remove('open');try{localStorage.setItem('arcilla-guia','1')}catch(e){}});
+try{if(!localStorage.getItem('arcilla-guia'))$('gd').classList.add('open')}catch(e){$('gd').classList.add('open')}
 function size(){const a=$('app');renderer.setSize(a.clientWidth,a.clientHeight,false);camera.aspect=a.clientWidth/a.clientHeight;camera.updateProjectionMatrix();controls.handleResize()}
 addEventListener('resize',size);size();newPoly('sphere');toSculpt(1,true);refreshObjs();
 (function loop(){requestAnimationFrame(loop);controls.update();stepAnim();drawGizmo();renderer.render(scene,camera)})();
