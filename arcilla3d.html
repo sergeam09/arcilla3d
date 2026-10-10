@@ -77,6 +77,20 @@ body[data-pc="1"] #cp{display:flex}
 #bp small{font-size:10px;color:var(--mut)}
 #bp #bk{height:34px;font-size:13px}
 #bp button.on small{color:var(--acx)}
+#sc{position:absolute;top:62px;right:112px;padding:8px;display:none;flex-direction:column;gap:6px;z-index:4;background:var(--ui);border-radius:var(--r);min-width:210px}
+#sc.open{display:flex}
+#sg-s,#sg-r{display:flex;flex-direction:column;gap:6px}
+#sc:not([data-sm="r"]) #sg-r,#sc[data-sm="r"] #sg-s{display:none}
+.sl .v{width:42px;text-align:right;font-size:12px;color:var(--mut)}
+.sl{display:flex;align-items:center;gap:8px;color:var(--mut)}
+.sl b{width:14px;font-weight:500;color:var(--tx);font-size:13px}
+#sc input{flex:1;height:30px;margin:0}
+#sc button{height:34px;background:var(--btn);padding:0 12px;font-size:13px}
+#sc button.on{background:var(--ac);color:var(--acx)}
+#tp{position:absolute;bottom:72px;left:50%;transform:translateX(-50%);display:none;align-items:center;gap:4px;background:var(--ui);border-radius:var(--r);padding:4px;z-index:4}
+body[data-tr="1"] #tp{display:flex}
+#tp button{height:38px;padding:0 12px;font-size:14px;background:var(--btn)}
+#tp button.on{background:var(--ac);color:var(--acx)}
 #gzw{position:absolute;top:62px;right:8px;display:flex;flex-direction:column;align-items:center;gap:4px;z-index:2}
 #gz{width:96px;height:96px;touch-action:none}
 #vtog{height:30px;padding:0 14px;font-size:12px;background:var(--ui);color:var(--tx)}
@@ -84,7 +98,7 @@ body[data-pc="1"] #cp{display:flex}
 <div id="app"><canvas id="cv"></canvas><div id="msg"></div><div id="box"></div><button id="shf" title="Modificador (toque: fijar, mantener: temporal)"><svg class="i" viewBox="0 0 24 24" style="width:22px;height:22px"><path class="s" d="M12 5l8 14H4z"/></svg></button>
 <div id="top">
 <div class="grp"><button id="mS" class="tx on">Moldear</button><button id="mP" class="tx">Poly</button></div>
-<div class="grp"><button id="sub" title="Quitar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 12h14"/></svg></button><button id="sym" class="on" title="Simetría"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M11 2h2v3h-2zm0 5h2v3h-2zm0 5h2v3h-2zm0 5h2v3h-2zM3 8h6v8H3zm12 0h6v8h-6z"/></svg></button><label class="cw" title="Color"><input id="clr" type="color" value="#c7634a"></label><button id="ptot" title="Pintar todo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><path class="f" d="M8 8h8v8H8z"/></svg></button><button id="pmesh" class="on" data-m="poly" title="Mostrar u ocultar malla"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 3l8 4.5v9L12 21l-8-4.5v-9z" stroke-width="1.6"/><path class="s" d="M12 3v18M4 7.5l16 9M20 7.5l-16 9" stroke-width="1.6"/></svg></button><button id="pobj" data-m="poly" title="Objetos"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 9h11v11H4z" stroke-width="1.7"/><path class="s" d="M9 4h11v11H9z" stroke-width="1.7"/></svg></button><button id="pbool" data-m="poly" title="Booleano"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="9" cy="12" r="6" stroke-width="1.7"/><circle class="s" cx="15" cy="12" r="6" stroke-width="1.7"/></svg></button></div>
+<div class="grp"><button id="sub" title="Quitar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 12h14"/></svg></button><button id="sym" class="on" title="Simetría"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M11 2h2v3h-2zm0 5h2v3h-2zm0 5h2v3h-2zm0 5h2v3h-2zM3 8h6v8H3zm12 0h6v8h-6z"/></svg></button><label class="cw" title="Color"><input id="clr" type="color" value="#c7634a"></label><button id="ptot" title="Pintar todo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><path class="f" d="M8 8h8v8H8z"/></svg></button><button id="pscale" title="Escalar y rotar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 19l6-6M5 19v-5M5 19h5M19 5l-6 6M19 5v5M19 5h-5"/></svg></button><button id="ptr" title="Transformar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 8h8v12H4z"/><path class="s" d="M13 11l7-7M14 4h6v6"/></svg></button><button id="pmesh" class="on" data-m="poly" title="Mostrar u ocultar malla"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 3l8 4.5v9L12 21l-8-4.5v-9z" stroke-width="1.6"/><path class="s" d="M12 3v18M4 7.5l16 9M20 7.5l-16 9" stroke-width="1.6"/></svg></button><button id="pobj" data-m="poly" title="Objetos"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 9h11v11H4z" stroke-width="1.7"/><path class="s" d="M9 4h11v11H9z" stroke-width="1.7"/></svg></button><button id="pbool" data-m="poly" title="Booleano"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="9" cy="12" r="6" stroke-width="1.7"/><circle class="s" cx="15" cy="12" r="6" stroke-width="1.7"/></svg></button></div>
 <div class="grp" style="margin-left:auto"><button id="undo" title="Deshacer"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 4v6h6M5.6 14a8 8 0 101.9-8.4L4 10"/></svg></button><button id="exp" title="Exportar GLB"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg></button><button id="nw" title="Nuevo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 5v14M5 12h14"/></svg></button><button id="hide" title="Ocultar menú"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 9l6 6 6-6"/></svg></button></div>
 </div>
 <div id="np"><select id="shape"><option value="sphere">Esfera</option><option value="cube">Cubo</option><option value="slab">Lámina</option><option value="cyl">Cilindro</option><option value="plane">Plano</option></select><select id="res" data-m="sculpt"><option value="5000">Resolución baja</option><option value="12000" selected>Resolución media</option></select><button id="new">Crear</button></div>
@@ -96,11 +110,17 @@ body[data-pc="1"] #cp{display:flex}
 <button id="bd"><b>Restar</b><small>A pierde lo que ocupa B</small></button>
 <button id="bi"><b>Intersecar</b><small>Solo queda la zona común</small></button>
 <button id="bk">Conservar B</button></div>
-<div id="sl"><div class="vs"><div class="vt"><input id="rad" type="range" min="1" max="100" value="35"></div><span>Tam</span></div><div class="vs"><div class="vt"><input id="str" type="range" min="1" max="100" value="40"></div><span>Fza</span></div></div>
+<div id="sc"><div class="or"><button id="scm-s" class="on">Escalar</button><button id="scm-r">Rotar</button></div>
+<div id="sg-s"><span class="hint">Escala la selección o, sin selección, todo el objeto.</span><button id="scu" class="on">Uniforme</button><label class="sl"><b>X</b><input id="sx" type="range" min="20" max="300" value="100"><span class="v" id="sxv">100%</span></label><label class="sl"><b>Y</b><input id="sy" type="range" min="20" max="300" value="100"><span class="v" id="syv">100%</span></label><label class="sl"><b>Z</b><input id="sz" type="range" min="20" max="300" value="100"><span class="v" id="szv">100%</span></label></div>
+<div id="sg-r"><span class="hint">Rota la selección o, sin selección, todo el objeto.</span><label class="sl"><b>X</b><input id="rx" type="range" min="-180" max="180" value="0"><span class="v" id="rxv">0°</span></label><label class="sl"><b>Y</b><input id="ry" type="range" min="-180" max="180" value="0"><span class="v" id="ryv">0°</span></label><label class="sl"><b>Z</b><input id="rz" type="range" min="-180" max="180" value="0"><span class="v" id="rzv">0°</span></label></div>
+<button id="sca">Anclar a la base</button></div>
+<div id="tp"><button id="tm-m" class="on">Mover</button><button id="tm-s">Estirar</button><span class="sep"></span><button id="tx-l" class="on">Libre</button><button id="tx-x">X</button><button id="tx-y">Y</button><button id="tx-z">Z</button><span class="sep"></span><button id="tvol" class="on">Volumen</button></div>
+<div id="sl"><div class="vs"><div class="vt"><input id="rad" type="range" min="1" max="100" value="35"></div><span>Tam</span></div><div class="vs"><div class="vt"><input id="str" type="range" min="1" max="300" value="40"></div><span>Fza</span></div></div>
 <div id="cp" data-m="poly"><button id="cm-s" class="on">Dividir</button><button id="cm-l">Quitar izq.</button><button id="cm-r">Quitar der.</button><button id="cm-f" class="on">Rellenar</button></div>
+<svg id="ringsvg" style="position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;display:none;z-index:3"><circle id="ringc" r="40" fill="none" stroke="rgba(224,92,92,.9)" stroke-width="1.5"/></svg>
 <svg id="cutsvg" style="position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;display:none;z-index:4"><line id="cutln" stroke="#fff" stroke-width="1.5" stroke-dasharray="6 4"/></svg>
 <div id="gzw"><canvas id="gz"></canvas><button id="vtog">Perspectiva</button></div>
-<div id="ui"><div class="row" id="brushes"><button data-b="push" class="brush on" title="Empujar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M9 5.5a1.5 1.5 0 013 0V12H9z"/><path class="f" d="M12.5 11.5v-1.3a1.1 1.1 0 012.2 0v1.3zM14.8 11.5v-1a1.1 1.1 0 012.2 0v1zM17.1 11.5v-.6a1.1 1.1 0 012.2 0v.6z"/><path class="f" d="M7 11.5h12.3v6a3.5 3.5 0 01-3.5 3.5h-5.1a3.5 3.5 0 01-2.7-1.3l-2.9-3.6a1.3 1.3 0 012-1.6L7 15.6z"/><path class="s" d="M4.8 3.2l1.6 1.6M2.6 7.4h2.2M8 1.2v2" stroke-width="1.7"/></svg></button><button data-b="inflate" class="brush" title="Inflar"><svg class="i" viewBox="0 0 24 24"><circle class="f" cx="12" cy="10" r="7"/><path class="f" d="M10 18h4l-1 3h-2z"/></svg></button><button data-b="smooth" class="brush" title="Suavizar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M12 2.5c3.5 4.2 6 7.2 6 10.5a6 6 0 01-12 0c0-3.3 2.5-6.3 6-10.5z"/></svg></button><button data-b="grab" class="brush" title="Agarrar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M12 2l4 4h-3v5h5V8l4 4-4 4v-3h-5v5h3l-4 4-4-4h3v-5H6v3l-4-4 4-4v3h5V6H8z"/></svg></button><button data-b="pinch" class="brush" title="Pellizcar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 6l6 6-6 6M20 6l-6 6 6 6"/></svg></button><button data-b="paint" class="brush" title="Pintar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M20.7 3.3a2 2 0 00-2.8 0L10 11.2l2.8 2.8 7.9-7.9a2 2 0 000-2.8z"/><path class="f" d="M9 12.5c-2 0-3.5 1.5-3.5 3.5 0 1.2-.6 2.2-1.6 3 1 .5 2.1.7 3.2.7 2.6 0 4.4-1.6 4.4-3.9z"/></svg></button></div><div class="row" data-m="poly"><span class="psel"><button id="pm-v" class="on" title="Vértice"><svg class="i" viewBox="0 0 24 24"><circle class="f" cx="12" cy="12" r="5"/></svg></button><button id="pm-e" title="Borde"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 18L18 6"/><circle class="f" cx="6" cy="18" r="3"/><circle class="f" cx="18" cy="6" r="3"/></svg></button><button id="pm-f" title="Cara"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M5 5h14v14H5z"/></svg></button><button id="psa" title="Seleccionar todo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 5h14v14H5z" stroke-dasharray="3 2.5" stroke-width="1.6"/><circle class="f" cx="5" cy="5" r="2"/><circle class="f" cx="19" cy="5" r="2"/><circle class="f" cx="5" cy="19" r="2"/><circle class="f" cx="19" cy="19" r="2"/></svg></button><span class="sep"></span><button class="ax on" id="ax-l" title="Eje libre"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="12" cy="12" r="9"/><ellipse class="s" cx="12" cy="12" rx="9" ry="3.5"/><ellipse class="s" cx="12" cy="12" rx="3.5" ry="9"/></svg></button><button class="ax" id="ax-x" title="Eje"><span>X</span></button><button class="ax" id="ax-y" title="Eje"><span>Y</span></button><button class="ax" id="ax-z" title="Eje"><span>Z</span></button><span class="sep"></span><button id="ext" title="Extruir"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M6 13h12v7H6z"/><path class="f" d="M12 3l5 5h-3.5v4h-3V8H7z"/></svg></button><button id="sbd" title="Subdividir"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 4h16v16H4zM12 4v16M4 12h16"/></svg></button><button id="del" title="Borrar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 6l12 12M18 6L6 18"/></svg></button><button id="ppaint" title="Pintar caras"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M4 13l7-7 8 8-7 7z"/><path class="f" d="M20 15c1 1.5 1.5 2.5 1.5 3.3a1.5 1.5 0 01-3 0c0-.8.5-1.8 1.5-3.3z"/></svg></button><button id="hole" title="Rellenar agujero"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="12" cy="12" r="8" stroke-dasharray="3 3"/><circle class="f" cx="12" cy="12" r="4"/></svg></button><button id="pcut" title="Cortar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 7h14v12H5z"/><path class="s" d="M3 21L21 3"/></svg></button></span><button id="pbr" title="Pinceles"><svg class="i" viewBox="0 0 24 24"><path class="f" fill-rule="evenodd" d="M6 2h12v6H6zM8.6 3.6v3.2h.9V3.6zM11.5 4.2v2.6h.9V4.2zM14.4 3.6v3.2h.9V3.6z"/><path class="f" d="M6 9h12v3.2H6z"/><path class="f" fill-rule="evenodd" d="M9.2 12.8h5.6l-.9 7.7a2 2 0 01-3.8 0zM12 18.3m-.8 0a.8.8 0 101.6 0 .8.8 0 10-1.6 0z"/></svg></button><button id="pnt" title="Pintar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M20.7 3.3a2 2 0 00-2.8 0L10 11.2l2.8 2.8 7.9-7.9a2 2 0 000-2.8z"/><path class="f" d="M9 12.5c-2 0-3.5 1.5-3.5 3.5 0 1.2-.6 2.2-1.6 3 1 .5 2.1.7 3.2.7 2.6 0 4.4-1.6 4.4-3.9z"/></svg></button><span class="psel"><button id="toscu" title="A moldear"><svg class="i" viewBox="0 0 24 24"><circle class="f" cx="12" cy="12" r="8"/></svg></button></span></div></div></div>
+<div id="ui"><div class="row" id="brushes"><button data-b="clay" class="brush" title="Arcilla"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M3 18h18v3H3z"/><path class="f" d="M5 16c0-4 3-7 7-7s7 3 7 7z"/></svg></button><button data-b="push" class="brush on" title="Empujar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M9 5.5a1.5 1.5 0 013 0V12H9z"/><path class="f" d="M12.5 11.5v-1.3a1.1 1.1 0 012.2 0v1.3zM14.8 11.5v-1a1.1 1.1 0 012.2 0v1zM17.1 11.5v-.6a1.1 1.1 0 012.2 0v.6z"/><path class="f" d="M7 11.5h12.3v6a3.5 3.5 0 01-3.5 3.5h-5.1a3.5 3.5 0 01-2.7-1.3l-2.9-3.6a1.3 1.3 0 012-1.6L7 15.6z"/><path class="s" d="M4.8 3.2l1.6 1.6M2.6 7.4h2.2M8 1.2v2" stroke-width="1.7"/></svg></button><button data-b="inflate" class="brush" title="Inflar"><svg class="i" viewBox="0 0 24 24"><circle class="f" cx="12" cy="10" r="7"/><path class="f" d="M10 18h4l-1 3h-2z"/></svg></button><button data-b="smooth" class="brush" title="Suavizar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M12 2.5c3.5 4.2 6 7.2 6 10.5a6 6 0 01-12 0c0-3.3 2.5-6.3 6-10.5z"/></svg></button><button data-b="grab" class="brush" title="Mover"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M12 2l4 4h-3v5h5V8l4 4-4 4v-3h-5v5h3l-4 4-4-4h3v-5H6v3l-4-4 4-4v3h5V6H8z"/></svg></button><button data-b="drag" class="brush" title="Arrastrar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 19c0-6 6-3 8-8s6-4 8-7"/><circle class="f" cx="20" cy="4" r="2.2"/></svg></button><button data-b="pinch" class="brush" title="Pellizcar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 6l6 6-6 6M20 6l-6 6 6 6"/></svg></button><button data-b="flatten" class="brush" title="Aplanar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M3 15h18v3H3z"/><path class="s" d="M3 10c2-3 4 1 6-1s4 2 6-1 4 1 6 0" stroke-width="1.6" stroke-dasharray="2 2"/></svg></button><button data-b="paint" class="brush" title="Pintar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M20.7 3.3a2 2 0 00-2.8 0L10 11.2l2.8 2.8 7.9-7.9a2 2 0 000-2.8z"/><path class="f" d="M9 12.5c-2 0-3.5 1.5-3.5 3.5 0 1.2-.6 2.2-1.6 3 1 .5 2.1.7 3.2.7 2.6 0 4.4-1.6 4.4-3.9z"/></svg></button></div><div class="row" data-m="poly"><span class="psel"><button id="pm-v" class="on" title="Vértice"><svg class="i" viewBox="0 0 24 24"><circle class="f" cx="12" cy="12" r="5"/></svg></button><button id="pm-e" title="Borde"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 18L18 6"/><circle class="f" cx="6" cy="18" r="3"/><circle class="f" cx="18" cy="6" r="3"/></svg></button><button id="pm-f" title="Cara"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M5 5h14v14H5z"/></svg></button><button id="psa" title="Seleccionar todo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 5h14v14H5z" stroke-dasharray="3 2.5" stroke-width="1.6"/><circle class="f" cx="5" cy="5" r="2"/><circle class="f" cx="19" cy="5" r="2"/><circle class="f" cx="5" cy="19" r="2"/><circle class="f" cx="19" cy="19" r="2"/></svg></button><span class="sep"></span><button class="ax on" id="ax-l" title="Eje libre"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="12" cy="12" r="9"/><ellipse class="s" cx="12" cy="12" rx="9" ry="3.5"/><ellipse class="s" cx="12" cy="12" rx="3.5" ry="9"/></svg></button><button class="ax" id="ax-x" title="Eje"><span>X</span></button><button class="ax" id="ax-y" title="Eje"><span>Y</span></button><button class="ax" id="ax-z" title="Eje"><span>Z</span></button><span class="sep"></span><button id="ext" title="Extruir"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M6 13h12v7H6z"/><path class="f" d="M12 3l5 5h-3.5v4h-3V8H7z"/></svg></button><button id="sbd" title="Subdividir"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 4h16v16H4zM12 4v16M4 12h16"/></svg></button><button id="del" title="Borrar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 6l12 12M18 6L6 18"/></svg></button><button id="ppaint" title="Pintar caras"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M4 13l7-7 8 8-7 7z"/><path class="f" d="M20 15c1 1.5 1.5 2.5 1.5 3.3a1.5 1.5 0 01-3 0c0-.8.5-1.8 1.5-3.3z"/></svg></button><button id="hole" title="Rellenar agujero"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="12" cy="12" r="8" stroke-dasharray="3 3"/><circle class="f" cx="12" cy="12" r="4"/></svg></button><button id="pcut" title="Cortar"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 7h14v12H5z"/><path class="s" d="M3 21L21 3"/></svg></button></span><button id="pbr" title="Pinceles"><svg class="i" viewBox="0 0 24 24"><path class="f" fill-rule="evenodd" d="M6 2h12v6H6zM8.6 3.6v3.2h.9V3.6zM11.5 4.2v2.6h.9V4.2zM14.4 3.6v3.2h.9V3.6z"/><path class="f" d="M6 9h12v3.2H6z"/><path class="f" fill-rule="evenodd" d="M9.2 12.8h5.6l-.9 7.7a2 2 0 01-3.8 0zM12 18.3m-.8 0a.8.8 0 101.6 0 .8.8 0 10-1.6 0z"/></svg></button><button id="pnt" title="Pintar"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M20.7 3.3a2 2 0 00-2.8 0L10 11.2l2.8 2.8 7.9-7.9a2 2 0 000-2.8z"/><path class="f" d="M9 12.5c-2 0-3.5 1.5-3.5 3.5 0 1.2-.6 2.2-1.6 3 1 .5 2.1.7 3.2.7 2.6 0 4.4-1.6 4.4-3.9z"/></svg></button><span class="psel"><button id="toscu" title="A moldear"><svg class="i" viewBox="0 0 24 24"><circle class="f" cx="12" cy="12" r="8"/></svg></button></span></div></div></div>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/TrackballControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/exporters/GLTFExporter.js"></script>
@@ -124,8 +144,57 @@ function install(g){N=g.attributes.position.count;
   geo=g;g.computeVertexNormals();g.computeBoundingSphere();
   pos=g.attributes.position.array;col=g.attributes.color.array;nrm=g.attributes.normal.array;
   mesh=new THREE.Mesh(g,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.85,metalness:0,side:THREE.DoubleSide}));
-  scene.add(mesh);H.sculpt=[];
+  scene.add(mesh);H.sculpt=[];triCount=g.index.count/3;dynInit();
 }
+let triCount=0,topoVer=0,idxCache=null;const DYN={L:.06,max:150000,warned:false};
+function dynInit(){
+  const ix=geo.index.array;let sum=0,c=0;const step=Math.max(1,Math.floor(triCount/3000));
+  for(let t=0;t<triCount;t+=step)for(let e=0;e<3;e++){const a=ix[3*t+e],b=ix[3*t+(e+1)%3];sum+=Math.hypot(pos[3*a]-pos[3*b],pos[3*a+1]-pos[3*b+1],pos[3*a+2]-pos[3*b+2]);c++}
+  DYN.L=(sum/c)*1.7;DYN.warned=false;topoVer++;idxCache=null;geo.setDrawRange(0,triCount*3)}
+function buildAdj(){const s=Array.from({length:N},()=>new Set()),ix=geo.index.array;
+  for(let t=0;t<triCount;t++){const a=ix[3*t],b=ix[3*t+1],e=ix[3*t+2];s[a].add(b).add(e);s[b].add(a).add(e);s[e].add(a).add(b)}
+  return s.map(x=>[...x])}
+function ensureCap(nv,nt){
+  const cap=pos.length/3,icap=geo.index.array.length/3;if(nv<=cap&&nt<=icap)return;
+  const nc=Math.max(nv,Math.ceil(cap*1.5)),ni=Math.max(nt,Math.ceil(icap*1.5));
+  const P2=new Float32Array(nc*3);P2.set(pos);const C2=new Float32Array(nc*3);C2.set(col);const I2=new Uint32Array(ni*3);I2.set(geo.index.array);
+  geo.setAttribute('position',new THREE.BufferAttribute(P2,3));geo.setAttribute('color',new THREE.BufferAttribute(C2,3));
+  geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(nc*3),3));geo.setIndex(new THREE.BufferAttribute(I2,1));
+  pos=P2;col=C2;nrm=geo.attributes.normal.array}
+function dynSplit(pred,onSplit){
+  if(mode!=='sculpt')return;
+  if(N>=DYN.max){if(!DYN.warned){DYN.warned=true;msg('Límite de detalle alcanzado')}return}
+  const L2=DYN.L*DYN.L,E=new Map();let ix=geo.index.array;
+  for(let t=0;t<triCount;t++){const a=ix[3*t],b=ix[3*t+1],c=ix[3*t+2];
+    if(!(pred(a)||pred(b)||pred(c)))continue;
+    for(let e=0;e<3;e++){const u=ix[3*t+e],v=ix[3*t+(e+1)%3],dx=pos[3*u]-pos[3*v],dy=pos[3*u+1]-pos[3*v+1],dz=pos[3*u+2]-pos[3*v+2],l2=dx*dx+dy*dy+dz*dz;
+      if(l2>L2){const k=u<v?u+','+v:v+','+u;let r=E.get(k);if(!r){r={u,v,l2,t:[]};E.set(k,r)}r.t.push(t)}}}
+  const list=[...E.values()].filter(r=>r.t.length===2).sort((x,y)=>y.l2-x.l2).slice(0,400);
+  if(!list.length)return;
+  ensureCap(N+list.length,triCount+list.length*2);ix=geo.index.array;
+  const used=new Set(),rep=(arr,f,t)=>{const k=arr.indexOf(f);if(k>=0)arr[k]=t};let n=0;
+  for(const r of list){const[t1,t2]=r.t;if(used.has(t1)||used.has(t2))continue;
+    const m=N,apex=[];
+    for(let q=0;q<3;q++){pos[3*m+q]=(pos[3*r.u+q]+pos[3*r.v+q])/2;col[3*m+q]=(col[3*r.u+q]+col[3*r.v+q])/2}
+    for(const t of[t1,t2]){let i0=0;
+      for(let e=0;e<3;e++){const x=ix[3*t+e],y=ix[3*t+(e+1)%3];if((x===r.u&&y===r.v)||(x===r.v&&y===r.u)){i0=e;break}}
+      const x=ix[3*t+i0],y=ix[3*t+(i0+1)%3],z=ix[3*t+(i0+2)%3];apex.push(z);
+      ix[3*t]=x;ix[3*t+1]=m;ix[3*t+2]=z;const nt=triCount++;ix[3*nt]=m;ix[3*nt+1]=y;ix[3*nt+2]=z}
+    rep(adj[r.u],r.v,m);rep(adj[r.v],r.u,m);adj[m]=[r.u,r.v,apex[0],apex[1]];adj[apex[0]].push(m);adj[apex[1]].push(m);
+    N++;used.add(t1);used.add(t2);n++;if(onSplit)onSplit(r.u,r.v,m)}
+  if(n){topoVer++;idxCache=null;geo.index.needsUpdate=true;geo.setDrawRange(0,triCount*3)}}
+function sculptSnap(){
+  const ix=geo.index.array;if(!idxCache||idxCache.ver!==topoVer)idxCache={ver:topoVer,idx:ix.slice(0,triCount*3),N,tc:triCount};
+  const ic=idxCache,p=pos.slice(0,N*3),c=col.slice(0,N*3);
+  return()=>{ensureCap(ic.N,ic.tc);pos.set(p);col.set(c);const I=geo.index.array;I.set(ic.idx);I.fill(0,ic.tc*3);N=ic.N;triCount=ic.tc;adj=buildAdj();topoVer++;idxCache=null;geo.setDrawRange(0,triCount*3);geo.index.needsUpdate=true;refresh()}}
+function sculptExport(){const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(pos.slice(0,N*3),3));g.setAttribute('color',new THREE.BufferAttribute(col.slice(0,N*3),3));
+  g.setIndex(new THREE.BufferAttribute(geo.index.array.slice(0,triCount*3),1));g.computeVertexNormals();
+  return new THREE.Mesh(g,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.85}))}
+const addTo=(g,a,b,m)=>{const ja=g.map.get(a),jb=g.map.get(b);if(ja===undefined&&jb===undefined)return;
+  const oa=ja!==undefined?g.o[ja]:[pos[3*a],pos[3*a+1],pos[3*a+2]],ob=jb!==undefined?g.o[jb]:[pos[3*b],pos[3*b+1],pos[3*b+2]],
+    wa=ja!==undefined?g.w[ja]:0,wb=jb!==undefined?g.w[jb]:0;
+  g.map.set(m,g.idx.length);g.idx.push(m);g.w.push((wa+wb)/2);g.o.push(oa.map((x,k)=>(x+ob[k])/2))};
 function refresh(){geo.attributes.position.needsUpdate=true;geo.attributes.color.needsUpdate=true;geo.computeVertexNormals();geo.attributes.normal.needsUpdate=true;geo.computeBoundingSphere()}
 function region(p,R){const idx=[],w=[],R2=R*R;
   for(let i=0;i<N;i++){const dx=pos[3*i]-p.x,dy=pos[3*i+1]-p.y,dz=pos[3*i+2]-p.z,d=dx*dx+dy*dy+dz*dz;
@@ -136,11 +205,32 @@ function dab(p,R,k,s){
   let ax=0,ay=0,az=0;
   for(let j=0;j<idx.length;j++){const i=idx[j];ax+=nrm[3*i]*w[j];ay+=nrm[3*i+1]*w[j];az+=nrm[3*i+2]*w[j]}
   const l=Math.hypot(ax,ay,az)||1;ax/=l;ay/=l;az/=l;
-  if(brush==='smooth'){const t=new Float32Array(idx.length*3);
-    for(let j=0;j<idx.length;j++){const a=adj[idx[j]];let x=0,y=0,z=0;for(const n of a){x+=pos[3*n];y+=pos[3*n+1];z+=pos[3*n+2]}
-      t[3*j]=x/a.length;t[3*j+1]=y/a.length;t[3*j+2]=z/a.length}
-    for(let j=0;j<idx.length;j++){const i=idx[j],f=Math.min(1,w[j]*k*.8);
-      pos[3*i]+=(t[3*j]-pos[3*i])*f;pos[3*i+1]+=(t[3*j+1]-pos[3*i+1])*f;pos[3*i+2]+=(t[3*j+2]-pos[3*i+2])*f}
+  if(brush==='smooth'){
+    const np=Math.max(1,Math.ceil(k*.8));
+    for(let pass=0;pass<np;pass++){const t=new Float32Array(idx.length*3);
+      for(let j=0;j<idx.length;j++){const i=idx[j],a=adj[i];
+        if(!a.length){t[3*j]=pos[3*i];t[3*j+1]=pos[3*i+1];t[3*j+2]=pos[3*i+2];continue}
+        let x=0,y=0,z=0;for(const n of a){x+=pos[3*n];y+=pos[3*n+1];z+=pos[3*n+2]}
+        t[3*j]=x/a.length;t[3*j+1]=y/a.length;t[3*j+2]=z/a.length}
+      for(let j=0;j<idx.length;j++){const i=idx[j],f=Math.min(1,w[j]*k*.8/np);
+        let dx=t[3*j]-pos[3*i],dy=t[3*j+1]-pos[3*i+1],dz=t[3*j+2]-pos[3*i+2];
+        if(s<0){const dn=dx*nrm[3*i]+dy*nrm[3*i+1]+dz*nrm[3*i+2];dx-=nrm[3*i]*dn;dy-=nrm[3*i+1]*dn;dz-=nrm[3*i+2]*dn}
+        pos[3*i]+=dx*f;pos[3*i+1]+=dy*f;pos[3*i+2]+=dz*f}}
+  }else if(brush==='clay'){
+    let cx=0,cy=0,cz=0,ws=0;
+    for(let j=0;j<idx.length;j++){const i=idx[j];cx+=pos[3*i]*w[j];cy+=pos[3*i+1]*w[j];cz+=pos[3*i+2]*w[j];ws+=w[j]}
+    cx/=ws;cy/=ws;cz/=ws;const off=s*R*.12;
+    for(let j=0;j<idx.length;j++){const i=idx[j],dd=(pos[3*i]-cx)*ax+(pos[3*i+1]-cy)*ay+(pos[3*i+2]-cz)*az;
+      let wc=Math.min(1,Math.max(0,1-Math.hypot(pos[3*i]-p.x,pos[3*i+1]-p.y,pos[3*i+2]-p.z)/R)/.55);wc=wc*wc*(3-2*wc);
+      const m=(s>0?dd<off:dd>off)?(off-dd)*Math.min(1,wc*k*.6):0;
+      pos[3*i]+=ax*m;pos[3*i+1]+=ay*m;pos[3*i+2]+=az*m}
+  }else if(brush==='flatten'){
+    let cx=0,cy=0,cz=0,ws=0;
+    for(let j=0;j<idx.length;j++){const i=idx[j];cx+=pos[3*i]*w[j];cy+=pos[3*i+1]*w[j];cz+=pos[3*i+2]*w[j];ws+=w[j]}
+    cx/=ws;cy/=ws;cz/=ws;
+    const dd=idx.map(i=>(pos[3*i]-cx)*ax+(pos[3*i+1]-cy)*ay+(pos[3*i+2]-cz)*az),dm=Math.max(...dd);
+    for(let j=0;j<idx.length;j++){const i=idx[j],m=s>0?-dd[j]*Math.min(1,w[j]*k*.9):(dm-dd[j])*Math.min(1,w[j]*k*.5);
+      pos[3*i]+=ax*m;pos[3*i+1]+=ay*m;pos[3*i+2]+=az*m}
   }else if(brush==='paint'){const c=new THREE.Color($('clr').value);
     for(let j=0;j<idx.length;j++){const i=idx[j],f=Math.min(1,w[j]*k*1.5);
       col[3*i]+=(c.r-col[3*i])*f;col[3*i+1]+=(c.g-col[3*i+1])*f;col[3*i+2]+=(c.b-col[3*i+2])*f}
@@ -148,31 +238,62 @@ function dab(p,R,k,s){
     for(let j=0;j<idx.length;j++){const i=idx[j],a=A*w[j];
       if(brush==='push'){pos[3*i]+=ax*a;pos[3*i+1]+=ay*a;pos[3*i+2]+=az*a}
       else if(brush==='inflate'){pos[3*i]+=nrm[3*i]*a;pos[3*i+1]+=nrm[3*i+1]*a;pos[3*i+2]+=nrm[3*i+2]*a}
-      else if(brush==='pinch'){let dx=p.x-pos[3*i],dy=p.y-pos[3*i+1],dz=p.z-pos[3*i+2];const dn=dx*ax+dy*ay+dz*az;dx-=ax*dn;dy-=ay*dn;dz-=az*dn;
-        const f=Math.min(.5,w[j]*k*.4)*s;pos[3*i]+=dx*f;pos[3*i+1]+=dy*f;pos[3*i+2]+=dz*f}}}
+      else if(brush==='pinch'&&pDir){let dx=p.x-pos[3*i],dy=p.y-pos[3*i+1],dz=p.z-pos[3*i+2];
+        const al=dx*pDir[0]+dy*pDir[1]+dz*pDir[2];dx-=pDir[0]*al;dy-=pDir[1]*al;dz-=pDir[2]*al;
+        const dn=dx*ax+dy*ay+dz*az;dx-=ax*dn;dy-=ay*dn;dz-=az*dn;
+        const L=Math.hypot(dx,dy,dz),minD=R*.08;
+        if(L>minD){const st=Math.min(.25,w[j]*k*.06)*L,mv=s>0?Math.min(st,L-minD):-st;pos[3*i]+=dx/L*mv;pos[3*i+1]+=dy/L*mv;pos[3*i+2]+=dz/L*mv}}}}
 }
 const ray=new THREE.Raycaster(),pt=new THREE.Vector2(),pointers=new Set();
 let S=null;
 function setRay(e){const r=cv.getBoundingClientRect();pt.set((e.clientX-r.left)/r.width*2-1,-((e.clientY-r.top)/r.height)*2+1);ray.setFromCamera(pt,camera)}
-const R=()=>.03+$('rad').value/100*.6,K=()=>$('str').value/100;
-function apply(p){const r=R(),k=K(),s=sub?-1:1;dab(p,r,k,s);if(sym&&Math.abs(p.x)>.02)dab(new THREE.Vector3(-p.x,p.y,p.z),r,k,s)}
-const TG=()=>mode==='poly'?{obj:fm,ctx:withPoly,sync:polyRebuild,snap:psnapFn}:{obj:mesh,ctx:f=>f(),sync:refresh,snap:()=>{const p=pos.slice(),c=col.slice();return()=>{pos.set(p);col.set(c);refresh()}}};
+const R=()=>.03+Math.pow($('rad').value/100,2)*2.4,K=()=>$('str').value/100;
+let pDir=null,pLast=null;
+function apply(p){const r=R(),k=K(),s=sub?-1:1;dab(p,r,k,s);if(sym&&Math.abs(p.x)>.02){const d0=pDir;if(pDir)pDir=[-pDir[0],pDir[1],pDir[2]];dab(new THREE.Vector3(-p.x,p.y,p.z),r,k,s);pDir=d0}}
+const TG=()=>mode==='poly'?{obj:fm,ctx:withPoly,sync:polyRebuild,snap:psnapFn}:{obj:mesh,ctx:f=>f(),sync:refresh,snap:sculptSnap};
+function regionN(p,Rr){
+  const g=region(p,Rr);let a=0,b=0,c=0;
+  g.idx.forEach((i,j)=>{a+=nrm[3*i]*g.w[j];b+=nrm[3*i+1]*g.w[j];c+=nrm[3*i+2]*g.w[j]});
+  const l=Math.hypot(a,b,c)||1;g.n=[a/l,b/l,c/l];
+  return g}
+function nearV(e,t){
+  const r=cv.getBoundingClientRect(),dist=camera.position.distanceTo(controls.target),rp=R()/(2*dist*Math.tan(camera.fov*Math.PI/360))*r.height,v=new THREE.Vector3();let best=null,bd=1e9;
+  t.ctx(()=>{for(let i=0;i<N;i++){v.set(pos[3*i],pos[3*i+1],pos[3*i+2]).project(camera);const d=Math.hypot((v.x+1)/2*r.width+r.left-e.clientX,(1-v.y)/2*r.height+r.top-e.clientY);if(d<bd){bd=d;best=i}}
+    best=best!==null&&bd<rp?new THREE.Vector3(pos[3*best],pos[3*best+1],pos[3*best+2]):null});
+  return best}
 function strokeAt(e,first){
-  const t=TG();setRay(e);const h=ray.intersectObject(t.obj)[0];
+  const t=TG();setRay(e);const h=ray.intersectObject(t.obj)[0];ringShow(e.clientX,e.clientY,h?h.point:null);
+  const camPl=p=>new THREE.Plane().setFromNormalAndCoplanarPoint(camera.getWorldDirection(new THREE.Vector3()).negate(),p),
+    V=(x,y,z)=>new THREE.Vector3(x,y,z),mir=p=>V(-p.x,p.y,p.z),
+    mkR=(p,rr)=>{let g;t.ctx(()=>{g=regionN(p,rr);g.o=g.idx.map(i=>[pos[3*i],pos[3*i+1],pos[3*i+2]]);g.map=new Map(g.idx.map((i,j)=>[i,j]))});return g},
+    nd=(d,n)=>{if(!sub)return d;const k=d.x*n[0]+d.y*n[1]+d.z*n[2];return V(n[0]*k,n[1]*k,n[2]*k)};
   if(brush==='grab'){
-    if(first){if(!h)return false;
-      const pl=new THREE.Plane().setFromNormalAndCoplanarPoint(camera.getWorldDirection(new THREE.Vector3()).negate(),h.point);
-      const mk=p=>{let g;t.ctx(()=>{g=region(p,R());g.o=g.idx.map(i=>[pos[3*i],pos[3*i+1],pos[3*i+2]])});return g};
-      S.G={pl,s:h.point.clone(),a:mk(h.point),b:sym&&Math.abs(h.point.x)>.02?mk(new THREE.Vector3(-h.point.x,h.point.y,h.point.z)):null};return true}
-    const G=S&&S.G,q=new THREE.Vector3();if(!G||!ray.ray.intersectPlane(G.pl,q))return;const d=q.sub(G.s);
-    t.ctx(()=>{for(const[g,sx]of[[G.a,1],[G.b,-1]]){if(!g)continue;g.idx.forEach((i,j)=>{pos[3*i]=g.o[j][0]+d.x*sx*g.w[j];pos[3*i+1]=g.o[j][1]+d.y*g.w[j];pos[3*i+2]=g.o[j][2]+d.z*g.w[j]})}});
+    if(first){const hp=h?h.point:nearV(e,t);if(!hp)return false;
+      S.G={pl:camPl(hp),s:hp.clone(),a:mkR(hp,R()),b:sym&&Math.abs(hp.x)>.02?mkR(mir(hp),R()):null};return true}
+    const G=S&&S.G,q=V(0,0,0);if(!G||!ray.ray.intersectPlane(G.pl,q))return;const d0=q.sub(G.s);
+    t.ctx(()=>{for(const[g,sx]of[[G.a,1],[G.b,-1]]){if(!g)continue;const d=nd(sx<0?V(-d0.x,d0.y,d0.z):d0,g.n);
+      g.idx.forEach((i,j)=>{pos[3*i]=g.o[j][0]+d.x*g.w[j];pos[3*i+1]=g.o[j][1]+d.y*g.w[j];pos[3*i+2]=g.o[j][2]+d.z*g.w[j]})}});
+    if(mode==='sculpt')dynSplit(v=>G.a.map.has(v)||(G.b&&G.b.map.has(v)),(a,b,m)=>{[G.a,G.b].forEach(g=>{if(g)addTo(g,a,b,m)})});
+    t.sync();return true}
+  if(brush==='drag'){
+    if(first){const hp=h?h.point:nearV(e,t);if(!hp)return false;S.D={pl:camPl(hp),last:hp.clone()};return true}
+    const D=S&&S.D,q=V(0,0,0);if(!D||!ray.ray.intersectPlane(D.pl,q))return;const d0=q.clone().sub(D.last);
+    t.ctx(()=>{const mv=(c,dd)=>{const g=regionN(c,R()),d=nd(dd,g.n);g.idx.forEach((i,j)=>{pos[3*i]+=d.x*g.w[j];pos[3*i+1]+=d.y*g.w[j];pos[3*i+2]+=d.z*g.w[j]})};
+      mv(D.last,d0);if(sym&&Math.abs(D.last.x)>.02)mv(mir(D.last),V(-d0.x,d0.y,d0.z))});
+    D.last.copy(q);
+    if(mode==='sculpt'){const rr=(R()*1.3)**2,L=D.last;dynSplit(v=>{const dx=pos[3*v]-L.x,dy=pos[3*v+1]-L.y,dz=pos[3*v+2]-L.z;return dx*dx+dy*dy+dz*dz<rr},null)}
     t.sync();return true}
   if(!h)return false;
+  if(first){pLast=h.point.clone();pDir=null}else if(pLast){const dd=h.point.clone().sub(pLast);if(dd.length()>R()*.2){pDir=dd.normalize().toArray();pLast.copy(h.point)}}
   if(mode==='poly'&&brush==='paint')paintAt(h);
   else{if(mode==='poly'&&first)ptopo=pTopo();t.ctx(()=>apply(h.point));t.sync()}
   return true}
 let shift=false;
-function endS(){if(S&&S.prev)brush=S.prev;S=null}
+function ringShow(x,y,pt){
+  const r=cv.getBoundingClientRect(),dist=camera.position.distanceTo(pt||controls.target),rp=R()/(2*dist*Math.tan(camera.fov*Math.PI/360))*r.height,c=$('ringc');
+  c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',Math.max(2,rp));$('ringsvg').style.display='block'}
+function ringHide(){$('ringsvg').style.display='none'}
+function endS(){if(S&&S.prev)brush=S.prev;S=null;ringHide()}
 function panBy(e){
   const dx=e.clientX-S.pan[0],dy=e.clientY-S.pan[1];S.pan=[e.clientX,e.clientY];
   const k=camera.position.distanceTo(controls.target)*2*Math.tan(camera.fov*Math.PI/360)/cv.clientHeight,m=camera.matrixWorld.elements;
@@ -181,7 +302,7 @@ function panBy(e){
 cv.addEventListener('pointerdown',e=>{
   pointers.add(e.pointerId);
   if(pointers.size>1){endS();pd=null;controls.enabled=true;return}
-  if(mode!=='sculpt'&&!pbrush)return;
+  if(ptrans||(mode!=='sculpt'&&!pbrush))return;
   const snap=TG().snap();S={id:e.pointerId};
   if(shift){S.prev=brush;brush='smooth'}
   if(strokeAt(e,true)){const h=H[mode];h.push(snap);if(h.length>20)h.shift();controls.enabled=false;try{cv.setPointerCapture(e.pointerId)}catch(_){}}
@@ -194,7 +315,7 @@ $('sub').onclick=e=>{sub=!sub;e.currentTarget.classList.toggle('on',sub)};
 $('sym').onclick=e=>{sym=!sym;e.currentTarget.classList.toggle('on',sym)};
 $('undo').onclick=()=>{const f=H[mode].pop();f?f():msg('Nada que deshacer')};
 $('exp').onclick=()=>{
-  new THREE.GLTFExporter().parse(mode==='poly'?polyExport():mesh,async buf=>{
+  new THREE.GLTFExporter().parse(mode==='poly'?polyExport():sculptExport(),async buf=>{
     try{const d=window.claude&&await claude.use('downloads');
       if(!d)return msg('La descarga no está disponible aquí');
       await d.save({filename:'modelo.glb.txt',data:buf});
@@ -301,7 +422,7 @@ function pickEl(e){
   return best}
 const setOf=el=>el.t==='v'?selV:el.t==='e'?selE:selF;
 function paintAt(h){
-  const p=h.point,R=.03+$('rad').value/100*.6,k=$('str').value/100,c=new THREE.Color($('clr').value),hf=tris[h.faceIndex];
+  const p=h.point,R=.03+Math.pow($('rad').value/100,2)*2.4,k=$('str').value/100,c=new THREE.Color($('clr').value),hf=tris[h.faceIndex];
   const fo=q=>{const d=q.distanceToSquared(p),r2=R*R;return d<r2?Math.pow(1-d/r2,2):0};
   P.f.forEach((f,fi)=>{const vs=f.i.map(i=>new THREE.Vector3(...P.v[i])),ct=vs.reduce((a,v)=>a.add(v),new THREE.Vector3()).divideScalar(vs.length),wf=fo(ct);
     f.k=f.k.map((q,j)=>{let w=Math.max(wf,fo(vs[j]));if(fi===hf)w=1;if(!w)return q;const t=Math.min(1,w*k*1.2);return[q[0]+(c.r-q[0])*t,q[1]+(c.g-q[1])*t,q[2]+(c.b-q[2])*t]})});
@@ -325,7 +446,7 @@ function boxSel(x0,y0,x1,y1){
   else P.f.forEach((f,i)=>{const c=[0,0,0];f.i.forEach(j=>{c[0]+=P.v[j][0];c[1]+=P.v[j][1];c[2]+=P.v[j][2]});if(inb(c.map(x=>x/f.i.length)))selF.add(i)})}
 const hideBox=()=>{bx.style.display='none'};
 cv.addEventListener('pointerdown',e=>{
-  if(mode!=='poly'||pbrush||pcut||pointers.size>1)return;
+  if(mode!=='poly'||pbrush||pcut||ptrans||pointers.size>1)return;
   const el=pickEl(e);pd={x:e.clientX,y:e.clientY,el,sel:!!el&&setOf(el).has(el.id),sh:shift,drag:false,box:false};
   if(pd.sel||shift)controls.enabled=false;
 });
@@ -417,7 +538,7 @@ const sbUp=()=>{if(!bd)return;clearTimeout(bt);if(!bd.drag&&!hold)sticky=!sticky
 sb.addEventListener('pointerup',sbUp);sb.addEventListener('pointercancel',sbUp);
 let pcut=false,cutS=null,cutMode='split',cutFill=true;
 function setCut(v){pcut=v;document.body.dataset.pc=v?'1':'0';$('pcut').classList.toggle('on',v);
-  if(v){setPb(0);clearSel();polyRebuild();msg('Dibuja una línea sobre la pieza para cortar')}}
+  if(v){setPb(0);if(ptrans)setTrans(false);clearSel();polyRebuild();msg('Dibuja una línea sobre la pieza para cortar')}}
 function lineSet(x1,y1,x2,y2,on){const L=$('cutln');$('cutsvg').style.display=on?'block':'none';L.setAttribute('x1',x1);L.setAttribute('y1',y1);L.setAttribute('x2',x2);L.setAttribute('y2',y2)}
 function cutMesh(C,n,right){
   const dist=P.v.map(v=>(v[0]-C.x)*n.x+(v[1]-C.y)*n.y+(v[2]-C.z)*n.z),eps=1e-5,sg=dist.map(d=>d>eps?1:d<-eps?-1:0),cache=new Map(),out=[];
@@ -466,6 +587,7 @@ function setPb(v){
   if(v===2)brush='paint';
   if(v===1&&brush==='paint')document.querySelector('.brush[data-b="push"]').click();
   if(v&&pcut)setCut(false);
+  if(v&&ptrans)setTrans(false);
   if(v){clearSel();polyRebuild();msg(v===2?'Pintar libre: arrastra sobre la pieza':'Pinceles de moldeo sobre la malla')}}
 $$('pbr',()=>setPb(pbMode===1?0:1));
 $$('pnt',()=>setPb(pbMode===2?0:2));
@@ -539,7 +661,7 @@ let objN=1,keepB=false;
 let boolOpen=false;
 function setBoolDefaults(){const A=$('ba'),B=$('bt');A.value=String(cur);const k=OBJ.findIndex((o,i)=>i!==cur);B.value=k<0?'':String(k)}
 function togglePanel(id){
-  ['np','op','bp'].forEach(p=>$(p).classList.toggle('open',p===id&&!$(p).classList.contains('open')));
+  ['np','op','bp','sc'].forEach(p=>$(p).classList.toggle('open',p===id&&!$(p).classList.contains('open')));
   if(id==='op'||id==='bp')refreshObjs();
   boolOpen=$('bp').classList.contains('open');if(boolOpen)setBoolDefaults();polyRebuild()}
 function refreshObjs(){
@@ -576,6 +698,78 @@ $$('pobj',()=>togglePanel('op'));$$('pbool',()=>togglePanel('bp'));$$('oadd',add
 ['ba','bt'].forEach(id=>{$(id).onchange=()=>polyRebuild()});
 $$('bu',()=>doBool('u'));$$('bd',()=>doBool('d'));$$('bi',()=>doBool('i'));
 $$('bk',()=>{keepB=!keepB;$('bk').classList.toggle('on',keepB)});
+let scB=null;
+function scBegin(){
+  if(scB)return;
+  const h=H[mode];h.push(TG().snap());if(h.length>20)h.shift();
+  let vs;
+  if(mode==='poly'){vs=(pm==='v'?selV.size:pm==='e'?selE.size:selF.size)?selVerts():P.v.map((v,i)=>i);scB={vs,o:vs.map(i=>P.v[i].slice())}}
+  else{vs=[];for(let i=0;i<N;i++)vs.push(i);scB={vs,o:vs.map(i=>[pos[3*i],pos[3*i+1],pos[3*i+2]])}}
+  const a=[1/0,1/0,1/0],b=[-1/0,-1/0,-1/0];scB.o.forEach(o=>o.forEach((x,k)=>{if(x<a[k])a[k]=x;if(x>b[k])b[k]=x}));
+  scB.c=[(a[0]+b[0])/2,$('sca').classList.contains('on')?a[1]:(a[1]+b[1])/2,(a[2]+b[2])/2]}
+let scMode='s';
+function scApply(){
+  if(!scB)scBegin();
+  const c=scB.c,rot=scMode==='r',v=new THREE.Vector3(),
+    f=[$('sx').value/100,$('sy').value/100,$('sz').value/100],
+    E=new THREE.Euler($('rx').value*Math.PI/180,$('ry').value*Math.PI/180,$('rz').value*Math.PI/180,'XYZ');
+  scB.vs.forEach((i,j)=>{const o=scB.o[j];let n;
+    if(rot){v.set(o[0]-c[0],o[1]-c[1],o[2]-c[2]).applyEuler(E);n=[c[0]+v.x,c[1]+v.y,c[2]+v.z]}
+    else n=[0,1,2].map(k=>c[k]+(o[k]-c[k])*f[k]);
+    if(mode==='poly')P.v[i]=n;else{pos[3*i]=n[0];pos[3*i+1]=n[1];pos[3*i+2]=n[2]}});
+  if(mode==='poly')polyRebuild();else refresh()}
+const scLab=id=>{$(id+'v').textContent=$(id).value+(id[0]==='r'?'°':'%')};
+function scEnd(){scB=null;['sx','sy','sz'].forEach(id=>{$(id).value=100;scLab(id)});['rx','ry','rz'].forEach(id=>{$(id).value=0;scLab(id)})}
+['sx','sy','sz','rx','ry','rz'].forEach(id=>{const el=$(id);
+  el.addEventListener('pointerdown',scBegin);
+  el.addEventListener('input',()=>{if(id[0]==='s'&&$('scu').classList.contains('on'))['sx','sy','sz'].forEach(o=>{$(o).value=el.value});['sx','sy','sz','rx','ry','rz'].forEach(scLab);scApply()});
+  el.addEventListener('change',scEnd)});
+const setScMode=m=>{scMode=m;$('sc').dataset.sm=m;$('scm-s').classList.toggle('on',m==='s');$('scm-r').classList.toggle('on',m==='r');scEnd()};
+$$('scm-s',()=>setScMode('s'));$$('scm-r',()=>setScMode('r'));
+$$('scu',()=>$('scu').classList.toggle('on'));$$('sca',()=>$('sca').classList.toggle('on'));
+$$('pscale',()=>togglePanel('sc'));
+{const rd=$('rad'),cr=()=>{const r=cv.getBoundingClientRect();ringShow(r.left+r.width/2,r.top+r.height/2,null)};
+  rd.addEventListener('pointerdown',cr);rd.addEventListener('input',cr);rd.addEventListener('change',ringHide);rd.addEventListener('pointerup',ringHide)}
+let ptrans=false,tMode='m',tAxis=null,tVol=true,TX=null;
+function setTrans(v){
+  ptrans=v;document.body.dataset.tr=v?'1':'0';$('ptr').classList.toggle('on',v);
+  if(v){setPb(0);if(pcut)setCut(false);clearSel();if(mode==='poly')polyRebuild();msg('Transformar: arrastra la pieza para moverla o estirarla')}}
+function refineAll(){let g=0;while(g++<40){const b=triCount;dynSplit(()=>true,null);if(triCount===b||N>=DYN.max)break}refresh()}
+cv.addEventListener('pointerdown',e=>{
+  if(!ptrans||pointers.size>1)return;
+  const t=TG();setRay(e);const h=ray.intersectObject(t.obj)[0];if(!h)return;
+  const snap=t.snap();let vs;
+  if(mode==='poly')vs=(pm==='v'?selV.size:pm==='e'?selE.size:selF.size)?selVerts():P.v.map((v,i)=>i);
+  else{vs=[];for(let i=0;i<N;i++)vs.push(i)}
+  const o=vs.map(i=>mode==='poly'?P.v[i].slice():[pos[3*i],pos[3*i+1],pos[3*i+2]]),a=[1/0,1/0,1/0],b=[-1/0,-1/0,-1/0];
+  o.forEach(p=>p.forEach((x,k)=>{if(x<a[k])a[k]=x;if(x>b[k])b[k]=x}));
+  const c=[0,1,2].map(k=>(a[k]+b[k])/2),size=Math.max(b[0]-a[0],b[1]-a[1],b[2]-a[2]),hp=h.point,
+    nv=camera.getWorldDirection(new THREE.Vector3()).negate(),pl=new THREE.Plane().setFromNormalAndCoplanarPoint(nv,hp),
+    hc=new THREE.Vector3(hp.x-c[0],hp.y-c[1],hp.z-c[2]);hc.addScaledVector(nv,-hc.dot(nv));
+  let L=hc.length(),u;
+  if(L<size*.08){const m=camera.matrixWorld.elements;u=new THREE.Vector3(m[0],m[1],m[2]);L=size*.3}else u=hc.clone().normalize();
+  TX={id:e.pointerId,vs,o,c,pl,s:hp.clone(),snap,u,L:Math.max(L,size*.1),hp,size,drag:false};
+  controls.enabled=false;try{cv.setPointerCapture(e.pointerId)}catch(_){}});
+cv.addEventListener('pointermove',e=>{
+  if(!TX||e.pointerId!==TX.id)return;
+  setRay(e);const q=new THREE.Vector3();if(!ray.ray.intersectPlane(TX.pl,q))return;const d=q.sub(TX.s);
+  if(!TX.drag){if(d.length()<TX.size*.01)return;TX.drag=true;const h=H[mode];h.push(TX.snap);if(h.length>20)h.shift()}
+  const c=TX.c,ax=tAxis?new THREE.Vector3(tAxis==='x'?1:0,tAxis==='y'?1:0,tAxis==='z'?1:0):null,res=[];
+  if(tMode==='m'){const dd=ax?ax.clone().multiplyScalar(d.dot(ax)):d;
+    TX.o.forEach(p=>res.push([p[0]+dd.x,p[1]+dd.y,p[2]+dd.z]))}
+  else{let u=TX.u,Ls=TX.L;
+    if(ax){u=ax;Ls=(TX.hp.x-c[0])*ax.x+(TX.hp.y-c[1])*ax.y+(TX.hp.z-c[2])*ax.z;if(Math.abs(Ls)<TX.size*.1)Ls=TX.size*.3*(Ls<0?-1:1)}
+    const s=Math.min(6,Math.max(.15,(Ls+d.dot(u))/Ls)),pr=tVol?1/Math.sqrt(s):1;
+    TX.o.forEach(p=>{const r=[p[0]-c[0],p[1]-c[1],p[2]-c[2]],ru=r[0]*u.x+r[1]*u.y+r[2]*u.z;
+      res.push([0,1,2].map(k=>c[k]+(r[k]-ru*[u.x,u.y,u.z][k])*pr+ru*[u.x,u.y,u.z][k]*s))})}
+  TX.vs.forEach((i,j)=>{if(mode==='poly')P.v[i]=res[j];else{pos[3*i]=res[j][0];pos[3*i+1]=res[j][1];pos[3*i+2]=res[j][2]}});
+  if(mode==='poly')polyRebuild();else refresh()});
+const trEnd=e=>{if(!TX||e.pointerId!==TX.id)return;const d=TX.drag;TX=null;controls.enabled=true;if(d&&mode==='sculpt')refineAll()};
+cv.addEventListener('pointerup',trEnd);cv.addEventListener('pointercancel',trEnd);
+$$('ptr',()=>setTrans(!ptrans));
+[['m','m'],['s','s']].forEach(([k,m])=>$$('tm-'+k,()=>{tMode=m;['m','s'].forEach(x=>$('tm-'+x).classList.toggle('on',x===k))}));
+[['l',null],['x','x'],['y','y'],['z','z']].forEach(([k,a])=>$$('tx-'+k,()=>{tAxis=a;['l','x','y','z'].forEach(x=>$('tx-'+x).classList.toggle('on',x===k))}));
+$$('tvol',()=>{tVol=!tVol;$('tvol').classList.toggle('on',tVol)});
 function size(){const a=$('app');renderer.setSize(a.clientWidth,a.clientHeight,false);camera.aspect=a.clientWidth/a.clientHeight;camera.updateProjectionMatrix();controls.handleResize()}
 addEventListener('resize',size);size();newPoly('sphere');toSculpt(1,true);refreshObjs();
 (function loop(){requestAnimationFrame(loop);controls.update();stepAnim();drawGizmo();renderer.render(scene,camera)})();
