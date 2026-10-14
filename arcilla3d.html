@@ -120,6 +120,23 @@ body[data-tab="brush"] .tg[data-t="brush"],body[data-tab="sel"] .tg[data-t="sel"
 #gzw{position:absolute;top:62px;right:8px;display:flex;flex-direction:column;align-items:center;gap:4px;z-index:2}
 #gz{width:96px;height:96px;touch-action:none}
 #vtog{height:30px;padding:0 14px;font-size:12px;background:var(--ui);color:var(--tx)}
+
+/* ---- disposición tipo Nomad: columna de herramientas a la derecha ---- */
+#ui{left:auto;right:8px;top:62px;bottom:8px;transform:none;max-width:none;width:80px;flex-direction:column;align-items:stretch;overflow-y:auto;overflow-x:hidden;padding:4px;gap:4px}
+#tabs{position:relative;flex:none;padding:0}
+#ui #tabs .cat{width:100%;height:36px;padding:0 4px;font-size:12px;background:var(--btn);flex-direction:row}
+#tabs .pop{display:none;position:fixed;right:96px;top:70px;background:var(--ui);border-radius:var(--r);padding:4px;flex-direction:column;gap:2px;z-index:7}
+#tabs.open .pop{display:flex}
+#ui #tabs .pop button{width:160px;height:42px;font-size:14px;background:transparent;flex-direction:row}
+#ui #tabs .pop button.on{background:var(--ac);color:var(--acx)}
+#ui .tg{flex-direction:column;align-items:center;gap:2px;flex:none}
+#ui button{width:68px;height:58px}
+#ui button.tb{width:68px;height:38px;padding:0;font-size:12px;margin:0}
+#ui .ax{width:68px;min-width:0;padding:0}
+#ui .sep{width:40px;height:1px;margin:4px 0}
+#gzw{right:auto;left:8px}
+#shf{right:auto;left:14px;top:auto;bottom:14px}
+#cp{bottom:16px}
 </style></head><body data-mode="sculpt">
 <div id="app"><canvas id="cv"></canvas><div id="msg"></div><div id="box"></div><button id="shf" title="Modificador (toque: fijar, mantener: temporal)"><svg class="i" viewBox="0 0 24 24" style="width:22px;height:22px"><path class="s" d="M12 5l8 14H4z"/></svg></button>
 <div id="top">
@@ -127,9 +144,9 @@ body[data-tab="brush"] .tg[data-t="brush"],body[data-tab="sel"] .tg[data-t="sel"
 <div class="grp"><button id="sub" title="Invertir"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 12h14"/></svg><span class="lb">Invertir</span></button><button id="sym" class="on" title="Simetría"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M11 2h2v3h-2zm0 5h2v3h-2zm0 5h2v3h-2zm0 5h2v3h-2zM3 8h6v8H3zm12 0h6v8h-6z"/></svg><span class="lb">Simetría</span></button><label class="cw" title="Color"><input id="clr" type="color" value="#c7634a"></label><button id="ptot" title="Pintar todo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><path class="f" d="M8 8h8v8H8z"/></svg><span class="lb">Pintar todo</span></button></div>
 <div class="grp" style="margin-left:auto"><button id="undo" title="Deshacer"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 4v6h6M5.6 14a8 8 0 101.9-8.4L4 10"/></svg><span class="lb">Deshacer</span></button><button id="exp" title="Exportar GLB"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg><span class="lb">Exportar</span></button><button id="nw" title="Nuevo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 5v14M5 12h14"/></svg><span class="lb">Nuevo</span></button><button id="help" title="Ayuda"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="12" cy="12" r="9"/><path class="s" d="M9.5 9.5a2.5 2.5 0 115 0c0 1.7-2.5 2-2.5 4"/><circle class="f" cx="12" cy="17" r="1.2"/></svg><span class="lb">Ayuda</span></button><button id="hide" title="Ocultar menú"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 9l6 6 6-6"/></svg><span class="lb">Ocultar</span></button></div>
 </div>
-<div id="np"><select id="shape"><option value="sphere">Esfera</option><option value="cube">Cubo</option><option value="slab">Lámina</option><option value="cyl">Cilindro</option><option value="plane">Plano</option><option value="head">Cabeza</option></select><select id="res" data-m="sculpt"><option value="5000">Resolución baja</option><option value="12000" selected>Resolución media</option></select><button id="new">Crear</button></div>
+<div id="np"><select id="shape"><option value="sphere">Esfera</option><option value="cube">Cubo</option><option value="slab">Lámina</option><option value="cyl">Cilindro</option><option value="plane">Plano</option></select><select id="res" data-m="sculpt"><option value="5000">Resolución baja</option><option value="12000" selected>Resolución media</option></select><button id="new">Crear</button></div>
 <div id="op" data-m="poly"><span class="hint">Marca como Hueco lo que quieras restar, elige objetos y pulsa Agrupar.</span><div id="ol"></div>
-<div class="or"><select id="oshape"><option value="sphere">Esfera</option><option value="cube">Cubo</option><option value="slab">Lámina</option><option value="cyl">Cilindro</option><option value="plane">Plano</option><option value="head">Cabeza</option></select><button id="oadd" class="od">+</button></div>
+<div class="or"><select id="oshape"><option value="sphere">Esfera</option><option value="cube">Cubo</option><option value="slab">Lámina</option><option value="cyl">Cilindro</option><option value="plane">Plano</option></select><button id="oadd" class="od">+</button></div>
 <span class="hint" id="og"></span>
 <div class="or"><button id="ogrp">Agrupar</button><button id="oint">Intersecar</button></div></div>
 <div id="sc"><div class="or"><button id="scm-s" class="on">Escalar</button><button id="scm-r">Rotar</button></div>
@@ -395,34 +412,9 @@ let curShape='sphere';let mode='sculpt',pm='v',axis=null,selV=new Set(),selE=new
 const pg=new THREE.Group();scene.add(pg);pg.visible=false;
 const key=(a,b)=>a<b?a+','+b:b+','+a,$$=(id,f)=>{$(id).onclick=f};
 function clearSel(){selV.clear();selE.clear();selF.clear()}
-function headMesh(){
-  const T=[[.80,.12,.12,.12],[.74,.34,.32,.36],[.62,.50,.48,.54],[.45,.59,.55,.61],[.25,.61,.61,.60],[.10,.58,.60,.57],[-.05,.55,.58,.52],[-.25,.50,.54,.46],[-.45,.44,.50,.40],[-.62,.38,.47,.34],[-.72,.32,.45,.30],[-.78,.25,.32,.26],[-.90,.22,.27,.23],[-1.2,.22,.27,.25]];
-  const Y=[.80,.77,.72,.66,.59,.52,.45,.38,.31,.24,.17,.10,.03,-.04,-.11,-.18,-.25,-.32,-.39,-.46,-.53,-.60,-.66,-.72,-.76,-.80,-.88,-.98,-1.10,-1.20],n=30;
-  const sm=(a,b,x)=>{const t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t)},g=(x,s)=>Math.exp(-(x*x)/(2*s*s));
-  const prof=y=>{for(let i=0;i<T.length-1;i++){const a=T[i],b=T[i+1];if(y<=a[0]&&y>=b[0]){const t=(a[0]-y)/(a[0]-b[0]);return[1,2,3].map(k=>a[k]+(b[k]-a[k])*t)}}return T[T.length-1].slice(1)};
-  const v=[],f=[];
-  Y.forEach(y=>{const[rx,rf,rb]=prof(y);
-    for(let i=0;i<n;i++){const th=2*Math.PI*i/n,s=Math.sin(th),c=Math.cos(th),fr=sm(0,.45,c);
-      let x=rx*s,z=c*(c>=0?rf:rb);const ax=Math.abs(x);
-      z+=.34*g(x/.085,1)*g((y+.08)/.22,1)*fr;                              // nariz
-      z+=.06*g((ax-.11)/.05,1)*g((y+.2)/.05,1)*fr;                         // alas de la nariz
-      z+=.07*g(x/.42,1)*g((y-.22)/.06,1)*fr;                               // arcos de las cejas
-      z-=.1*g((ax-.27)/.1,1)*g((y-.14)/.075,1)*fr;                         // cuencas
-      z+=.03*g((ax-.27)/.1,1)*g((y-.2)/.03,1)*fr;                          // párpados
-      z+=.07*g((ax-.44)/.13,1)*g((y+.1)/.13,1)*fr;                         // pómulos
-      z-=.06*g(x/.22,1)*g((y+.5)/.03,1)*fr;                                // línea de la boca
-      z+=.05*g(x/.16,1)*g((y+.44)/.045,1)*fr+.055*g(x/.16,1)*g((y+.58)/.045,1)*fr; // labios
-      z+=.18*g(x/.25,1)*g((y+.74)/.07,1)*fr;                               // mentón
-      x+=Math.sign(s)*.17*g((y+.02)/.17,1)*(Math.abs(s)>.88?1:0);          // orejas
-      v.push([x,y,z])}});
-  const m=Y.length;
-  for(let j=0;j<m-1;j++)for(let i=0;i<n;i++){const a=j*n+i,b=j*n+(i+1)%n,c=(j+1)*n+(i+1)%n,d=(j+1)*n+i;f.push([a,d,c,b])}
-  f.push([...Array(n).keys()]);f.push([...Array(n).keys()].map(i=>(m-1)*n+(n-1-i)));
-  return{v,f}}
 function newPoly(t){
   const k=.8,W=[.78,.72,.66];let v,f;
   if(t==='cube'||t==='sphere'||t==='slab'){v=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]].map(a=>a.map(x=>x*k));f=[[4,5,6,7],[1,0,3,2],[5,1,2,6],[0,4,7,3],[7,6,2,3],[0,1,5,4]]}
-  else if(t==='head'){const Hd=headMesh();v=Hd.v.map(p=>[p[0],p[1]+.2,p[2]]);f=Hd.f}
   else if(t==='plane'){v=[[-1.2,0,-1.2],[1.2,0,-1.2],[1.2,0,1.2],[-1.2,0,1.2]];f=[[3,2,1,0]]}
   else{v=[];for(const y of[-1,1])for(let i=0;i<8;i++){const a=i*Math.PI/4;v.push([Math.cos(a)*.7,y,Math.sin(a)*.7])}
     f=[];for(let i=0;i<8;i++){const j=(i+1)%8;f.push([8+i,8+j,j,i])}f.push([15,14,13,12,11,10,9,8],[0,1,2,3,4,5,6,7])}
@@ -561,7 +553,7 @@ function toSculpt(q,round,stay){
     const m=(a,b)=>{const k=key(a,b);let r=mid.get(k);if(r===undefined){r=V.length;V.push(V[a].map((x,i)=>(x+V[b][i])/2));col.push(col[a].map((x,i)=>(x+col[b][i])/2));mid.set(k,r)}return r};
     for(const[a,b,c]of T){const ab=m(a,b),bc=m(b,c),ca=m(c,a);nt.push([a,ab,ca],[b,bc,ab],[c,ca,bc],[ab,bc,ca])}T=nt}
   const nb=V.map(()=>new Set());T.forEach(([a,b,c])=>{nb[a].add(b).add(c);nb[b].add(a).add(c);nb[c].add(a).add(b)});
-  for(let it=0;it<(curShape==='head'?2:10);it++)V=V.map((v,i)=>{const s=[0,0,0];nb[i].forEach(j=>{s[0]+=V[j][0];s[1]+=V[j][1];s[2]+=V[j][2]});const n=nb[i].size||1;return[0,1,2].map(k=>v[k]+(s[k]/n-v[k])*.5)});
+  for(let it=0;it<10;it++)V=V.map((v,i)=>{const s=[0,0,0];nb[i].forEach(j=>{s[0]+=V[j][0];s[1]+=V[j][1];s[2]+=V[j][2]});const n=nb[i].size||1;return[0,1,2].map(k=>v[k]+(s[k]/n-v[k])*.5)});
   if(round)V=V.map(v=>{const l=Math.hypot(...v)||1;return v.map(x=>x/l*.9)});
   const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(V.flat(),3));g.setAttribute('color',new THREE.Float32BufferAttribute(col.flat(),3));g.setIndex(new THREE.BufferAttribute(new Uint32Array(T.flat()),1));
   install(g);setMode(stay?mode:'sculpt');if(q!==1)msg('Malla subdividida y suavizada, lista para moldear')}
@@ -823,7 +815,9 @@ $$('tvol',()=>{tVol=!tVol;$('tvol').classList.toggle('on',tVol)});
 const TABS={sculpt:[['brush','Pinceles'],['trans','Transformar']],poly:[['sel','Seleccionar'],['edit','Editar'],['paint','Pintar'],['brush','Pinceles'],['trans','Transformar'],['obj','Objetos']]};
 let tab='brush';
 function buildTabs(){const T=$('tabs');T.innerHTML='';
-  TABS[mode].forEach(([k,l])=>{const b=document.createElement('button');b.textContent=l;if(tab===k)b.className='on';b.onclick=()=>setTab(k);T.append(b)})}
+  const cur=TABS[mode].find(x=>x[0]===tab)||TABS[mode][0],c=document.createElement('button');c.className='cat';c.textContent=cur[1]+' ▾';c.onclick=()=>T.classList.toggle('open');T.append(c);
+  const p=document.createElement('div');p.className='pop';
+  TABS[mode].forEach(([k,l])=>{const b=document.createElement('button');b.textContent=l;if(tab===k)b.className='on';b.onclick=()=>{T.classList.remove('open');setTab(k)};p.append(b)});T.append(p)}
 function setTab(t){
   if(!TABS[mode].some(x=>x[0]===t))t=TABS[mode][0][0];
   tab=t;document.body.dataset.tab=t;
@@ -847,7 +841,7 @@ $$('dup',()=>dupObj(false));$$('mir',()=>dupObj(true));
 const HELP=[['h','Moldear: pinceles'],['clay','Arcilla','Construye capas planas. Con Invertir, talla.'],['push','Empujar','Empuja la superficie; con Invertir, la hunde.'],['inflate','Inflar','Infla la zona como un globo.'],['smooth','Suavizar','Alisa. Con Fuerza alta alisa más; con Invertir relaja sin perder la forma.'],['grab','Mover','Agarra una zona y la mueve. Con radio grande deforma toda la pieza.'],['drag','Arrastrar','La zona te sigue a lo largo del trazo, para alargar formas.'],['pinch','Pellizcar','Junta la superficie hacia el trazo para marcar bordes.'],['flatten','Aplanar','Aplana la zona; con Invertir, la rellena.'],['paint','Pintar','Pinta con el color elegido.'],
  ['h','Poly: selección y edición'],['pm-v','Vértice / Borde / Cara','Elige qué tipo de elemento seleccionas. Tocar selecciona; arrastrar lo mueve.'],['psa','Todo','Selecciona o limpia todo.'],['ax-l','Libre / X / Y / Z','Limita el movimiento a un eje.'],['pmesh','Malla','Muestra u oculta nodos y líneas.'],['ext','Extruir','Saca las caras seleccionadas.'],['sbd','Subdividir','Parte las caras en más.'],['del','Borrar','Quita lo seleccionado.'],['hole','Rellenar','Tapa un agujero: selecciona los vértices o bordes de su contorno.'],['pcut','Cortar','Dibuja una línea sobre la pieza para cortarla.'],['toscu','A moldear','Pasa el objeto a Moldear para esculpirlo.'],['ppaint','Pintar caras','Pinta las caras seleccionadas.'],['pnt','Pintar','Pintura libre sobre la pieza.'],
  ['h','Transformar y objetos'],['pscale','Escala y giro','Estira, encoge o gira la pieza o la selección con sliders.'],['pobj','Objetos','Lista de objetos. Marca uno como Hueco para restarlo al Agrupar.'],['dup','Duplicar','Crea una copia del objeto.'],['mir','Espejo','Crea una copia reflejada, útil para orejas y patas.'],
- ['h','Barra superior'],['sub','Invertir','Invierte el pincel (hunde en vez de empujar, separa en vez de juntar).'],['sym','Simetría','Repite el trazo al otro lado.'],['ptot','Pintar todo','Pinta toda la pieza con el color elegido.'],['undo','Deshacer','Vuelve al paso anterior.'],['exp','Exportar','Descarga el archivo GLB para Blender.'],['nw','Nuevo','Cambia la forma inicial (esfera, cubo, cabeza...).']];
+ ['h','Barra superior'],['sub','Invertir','Invierte el pincel (hunde en vez de empujar, separa en vez de juntar).'],['sym','Simetría','Repite el trazo al otro lado.'],['ptot','Pintar todo','Pinta toda la pieza con el color elegido.'],['undo','Deshacer','Vuelve al paso anterior.'],['exp','Exportar','Descarga el archivo GLB para Blender.'],['nw','Nuevo','Cambia la forma inicial (esfera, cubo, cilindro...).']];
 function buildHelp(){const L=$('hl');L.innerHTML='';
   HELP.forEach(h=>{const r=document.createElement('div');
     if(h[0]==='h'){r.className='hh';r.textContent=h[1];L.append(r);return}
