@@ -137,12 +137,14 @@ body[data-tab="brush"] .tg[data-t="brush"],body[data-tab="sel"] .tg[data-t="sel"
 #gzw{right:auto;left:8px}
 #shf{right:auto;left:14px;top:auto;bottom:14px}
 #cp{bottom:16px}
+#gzw{top:8px;left:8px}
+#top{left:118px}
 </style></head><body data-mode="sculpt">
 <div id="app"><canvas id="cv"></canvas><div id="msg"></div><div id="box"></div><button id="shf" title="Modificador (toque: fijar, mantener: temporal)"><svg class="i" viewBox="0 0 24 24" style="width:22px;height:22px"><path class="s" d="M12 5l8 14H4z"/></svg></button>
 <div id="top">
 <div class="grp"><button id="mS" class="tx on">Moldear</button><button id="mP" class="tx">Poly</button></div>
 <div class="grp"><button id="sub" title="Invertir"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M5 12h14"/></svg><span class="lb">Invertir</span></button><button id="sym" class="on" title="Simetría"><svg class="i" viewBox="0 0 24 24"><path class="f" d="M11 2h2v3h-2zm0 5h2v3h-2zm0 5h2v3h-2zm0 5h2v3h-2zM3 8h6v8H3zm12 0h6v8h-6z"/></svg><span class="lb">Simetría</span></button><label class="cw" title="Color"><input id="clr" type="color" value="#c7634a"></label><button id="ptot" title="Pintar todo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><path class="f" d="M8 8h8v8H8z"/></svg><span class="lb">Pintar todo</span></button></div>
-<div class="grp" style="margin-left:auto"><button id="undo" title="Deshacer"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 4v6h6M5.6 14a8 8 0 101.9-8.4L4 10"/></svg><span class="lb">Deshacer</span></button><button id="exp" title="Exportar GLB"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg><span class="lb">Exportar</span></button><button id="nw" title="Nuevo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 5v14M5 12h14"/></svg><span class="lb">Nuevo</span></button><button id="help" title="Ayuda"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="12" cy="12" r="9"/><path class="s" d="M9.5 9.5a2.5 2.5 0 115 0c0 1.7-2.5 2-2.5 4"/><circle class="f" cx="12" cy="17" r="1.2"/></svg><span class="lb">Ayuda</span></button><button id="hide" title="Ocultar menú"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 9l6 6 6-6"/></svg><span class="lb">Ocultar</span></button></div>
+<div class="grp" style="margin-left:auto"><button id="undo" title="Deshacer"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M4 4v6h6M5.6 14a8 8 0 101.9-8.4L4 10"/></svg><span class="lb">Deshacer</span></button><button id="exp" title="Exportar GLB"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg><span class="lb">Exportar</span></button><button id="nw" title="Nuevo"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M12 5v14M5 12h14"/></svg><span class="lb">Nuevo</span></button><button id="pgrid" title="Cuadrícula"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M8 5h8l4 14H4z" stroke-width="1.6"/><path class="s" d="M6.5 12h11M12 5v14M7 19l3-14M17 19l-3-14" stroke-width="1.6"/></svg><span class="lb">Cuadrícula</span></button><button id="help" title="Ayuda"><svg class="i" viewBox="0 0 24 24"><circle class="s" cx="12" cy="12" r="9"/><path class="s" d="M9.5 9.5a2.5 2.5 0 115 0c0 1.7-2.5 2-2.5 4"/><circle class="f" cx="12" cy="17" r="1.2"/></svg><span class="lb">Ayuda</span></button><button id="hide" title="Ocultar menú"><svg class="i" viewBox="0 0 24 24"><path class="s" d="M6 9l6 6 6-6"/></svg><span class="lb">Ocultar</span></button></div>
 </div>
 <div id="np"><select id="shape"><option value="sphere">Esfera</option><option value="cube">Cubo</option><option value="slab">Lámina</option><option value="cyl">Cilindro</option><option value="plane">Plano</option></select><select id="res" data-m="sculpt"><option value="5000">Resolución baja</option><option value="12000" selected>Resolución media</option></select><button id="new">Crear</button></div>
 <div id="op" data-m="poly"><span class="hint">Marca como Hueco lo que quieras restar, elige objetos y pulsa Agrupar.</span><div id="ol"></div>
@@ -445,6 +447,12 @@ function polyRebuild(){
   if(pm==='v'){if(showMesh)addPts(P.v,0xc8c8ce,3.5,true,.6);addPts([...selV].map(i=>P.v[i]),0xffffff,8,false)}
   if(pm==='e'){addLines(se.map(e=>e[1]),0xffffff,false);if(showMesh)addPts(EDG.map(e=>mp(e[1])),0xc8c8ce,3,true,.6);addPts(se.map(e=>mp(e[1])),0xffffff,7,false)}
   if(pm==='f'){if(showMesh)addPts(P.f.map(ctr),0xc8c8ce,3,true,.6);addPts([...selF].map(i=>ctr(P.f[i])),0xffffff,7,false)}
+  {const ax=ptrans?tAxis:axis;
+   if(ax&&mode==='poly'){const vs=selVerts(),ids=vs.length?vs:P.v.map((v,i)=>i),c=[0,0,0];
+     ids.forEach(i=>{c[0]+=P.v[i][0];c[1]+=P.v[i][1];c[2]+=P.v[i][2]});for(let k=0;k<3;k++)c[k]/=ids.length;
+     const d=ax==='x'?[3,0,0]:ax==='y'?[0,3,0]:[0,0,3],g=new THREE.BufferGeometry();
+     g.setAttribute('position',new THREE.Float32BufferAttribute([c[0]-d[0],c[1]-d[1],c[2]-d[2],c[0]+d[0],c[1]+d[1],c[2]+d[2]],3));
+     const l=new THREE.Line(g,new THREE.LineBasicMaterial({color:ax==='x'?0xe05a5a:ax==='y'?0x6fae5f:0x5f8fd9,depthTest:false}));l.renderOrder=5;pg.add(l)}}
 }
 function selVerts(){const s=new Set();
   if(pm==='v')selV.forEach(i=>s.add(i));else if(pm==='e')selE.forEach(k=>k.split(',').forEach(x=>s.add(+x)));else selF.forEach(i=>P.f[i].i.forEach(x=>s.add(x)));return[...s]}
@@ -559,7 +567,7 @@ function toSculpt(q,round,stay){
   install(g);setMode(stay?mode:'sculpt');if(q!==1)msg('Malla subdividida y suavizada, lista para moldear')}
 function setMode(m){const prevMode=mode;mode=m;if(m==='sculpt'&&pbMode)setPb(0);$('shape').value=curShape;document.body.dataset.mode=m;mesh.visible=m==='sculpt';pg.visible=m==='poly';$('mS').classList.toggle('on',m==='sculpt');$('mP').classList.toggle('on',m==='poly');controls.enabled=true;pd=null;setTab(prevMode===m?tab:TABS[m][0][0])}
 function setPm(m){pm=m;setPb(0);if(pcut)setCut(false);clearSel();['v','e','f'].forEach(k=>$('pm-'+k).classList.toggle('on',k===m));polyRebuild()}
-function setAxis(a){axis=a;['l','x','y','z'].forEach(k=>$('ax-'+k).classList.toggle('on',(a||'l')===k))}
+function setAxis(a){axis=a;msg(a?'Eje '+a.toUpperCase()+': el movimiento se limita a ese eje (selecciona algo y arrástralo)':'Movimiento libre');if(mode==='poly')polyRebuild();['l','x','y','z'].forEach(k=>$('ax-'+k).classList.toggle('on',(a||'l')===k))}
 $$('mS',()=>setMode('sculpt'));$$('mP',()=>setMode('poly'));$$('hide',()=>document.body.classList.toggle('cl'));$$('nw',()=>togglePanel('np'));$('ui').addEventListener('click',e=>{const b=e.target.closest('button');if(b&&b.title)msg(b.title)});
 ['v','e','f'].forEach(k=>$$('pm-'+k,()=>setPm(k)));
 [['l',null],['x','x'],['y','y'],['z','z']].forEach(([k,a])=>$$('ax-'+k,()=>setAxis(a)));
@@ -809,7 +817,7 @@ const trEnd=e=>{if(!TX||e.pointerId!==TX.id)return;const d=TX.drag;TX=null;contr
 cv.addEventListener('pointerup',trEnd);cv.addEventListener('pointercancel',trEnd);
 $$('ptr',()=>setTrans(!ptrans));
 [['m','m'],['s','s']].forEach(([k,m])=>$$('tm-'+k,()=>{tMode=m;['m','s'].forEach(x=>$('tm-'+x).classList.toggle('on',x===k))}));
-[['l',null],['x','x'],['y','y'],['z','z']].forEach(([k,a])=>$$('tx-'+k,()=>{tAxis=a;['l','x','y','z'].forEach(x=>$('tx-'+x).classList.toggle('on',x===k))}));
+[['l',null],['x','x'],['y','y'],['z','z']].forEach(([k,a])=>$$('tx-'+k,()=>{tAxis=a;if(mode==='poly')polyRebuild();['l','x','y','z'].forEach(x=>$('tx-'+x).classList.toggle('on',x===k))}));
 $$('tvol',()=>{tVol=!tVol;$('tvol').classList.toggle('on',tVol)});
 
 const TABS={sculpt:[['brush','Pinceles'],['trans','Transformar']],poly:[['sel','Seleccionar'],['edit','Editar'],['paint','Pintar'],['brush','Pinceles'],['trans','Transformar'],['obj','Objetos']]};
@@ -841,7 +849,7 @@ $$('dup',()=>dupObj(false));$$('mir',()=>dupObj(true));
 const HELP=[['h','Moldear: pinceles'],['clay','Arcilla','Construye capas planas. Con Invertir, talla.'],['push','Empujar','Empuja la superficie; con Invertir, la hunde.'],['inflate','Inflar','Infla la zona como un globo.'],['smooth','Suavizar','Alisa. Con Fuerza alta alisa más; con Invertir relaja sin perder la forma.'],['grab','Mover','Agarra una zona y la mueve. Con radio grande deforma toda la pieza.'],['drag','Arrastrar','La zona te sigue a lo largo del trazo, para alargar formas.'],['pinch','Pellizcar','Junta la superficie hacia el trazo para marcar bordes.'],['flatten','Aplanar','Aplana la zona; con Invertir, la rellena.'],['paint','Pintar','Pinta con el color elegido.'],
  ['h','Poly: selección y edición'],['pm-v','Vértice / Borde / Cara','Elige qué tipo de elemento seleccionas. Tocar selecciona; arrastrar lo mueve.'],['psa','Todo','Selecciona o limpia todo.'],['ax-l','Libre / X / Y / Z','Limita el movimiento a un eje.'],['pmesh','Malla','Muestra u oculta nodos y líneas.'],['ext','Extruir','Saca las caras seleccionadas.'],['sbd','Subdividir','Parte las caras en más.'],['del','Borrar','Quita lo seleccionado.'],['hole','Rellenar','Tapa un agujero: selecciona los vértices o bordes de su contorno.'],['pcut','Cortar','Dibuja una línea sobre la pieza para cortarla.'],['toscu','A moldear','Pasa el objeto a Moldear para esculpirlo.'],['ppaint','Pintar caras','Pinta las caras seleccionadas.'],['pnt','Pintar','Pintura libre sobre la pieza.'],
  ['h','Transformar y objetos'],['pscale','Escala y giro','Estira, encoge o gira la pieza o la selección con sliders.'],['pobj','Objetos','Lista de objetos. Marca uno como Hueco para restarlo al Agrupar.'],['dup','Duplicar','Crea una copia del objeto.'],['mir','Espejo','Crea una copia reflejada, útil para orejas y patas.'],
- ['h','Barra superior'],['sub','Invertir','Invierte el pincel (hunde en vez de empujar, separa en vez de juntar).'],['sym','Simetría','Repite el trazo al otro lado.'],['ptot','Pintar todo','Pinta toda la pieza con el color elegido.'],['undo','Deshacer','Vuelve al paso anterior.'],['exp','Exportar','Descarga el archivo GLB para Blender.'],['nw','Nuevo','Cambia la forma inicial (esfera, cubo, cilindro...).']];
+ ['h','Barra superior'],['sub','Invertir','Invierte el pincel (hunde en vez de empujar, separa en vez de juntar).'],['sym','Simetría','Repite el trazo al otro lado.'],['ptot','Pintar todo','Pinta toda la pieza con el color elegido.'],['undo','Deshacer','Vuelve al paso anterior.'],['exp','Exportar','Descarga el archivo GLB para Blender.'],['pgrid','Cuadrícula','Muestra un plano de referencia bajo la pieza, útil para alinear y comparar alturas.'],['nw','Nuevo','Cambia la forma inicial (esfera, cubo, cilindro...).']];
 function buildHelp(){const L=$('hl');L.innerHTML='';
   HELP.forEach(h=>{const r=document.createElement('div');
     if(h[0]==='h'){r.className='hh';r.textContent=h[1];L.append(r);return}
@@ -851,6 +859,8 @@ $$('help',()=>{const o=$('hp').classList.toggle('open');['np','op','sc'].forEach
 $$('hx',()=>$('hp').classList.remove('open'));
 $$('gok',()=>{$('gd').classList.remove('open');try{localStorage.setItem('arcilla-guia','1')}catch(e){}});
 try{if(!localStorage.getItem('arcilla-guia'))$('gd').classList.add('open')}catch(e){$('gd').classList.add('open')}
+const grid=new THREE.GridHelper(6,24,0x6a6a74,0x3a3a42);grid.position.y=-1;grid.visible=false;grid.material.transparent=true;grid.material.opacity=.55;scene.add(grid);
+$$('pgrid',()=>{grid.visible=!grid.visible;$('pgrid').classList.toggle('on',grid.visible);msg(grid.visible?'Cuadrícula visible':'Cuadrícula oculta')});
 function size(){const a=$('app');renderer.setSize(a.clientWidth,a.clientHeight,false);camera.aspect=a.clientWidth/a.clientHeight;camera.updateProjectionMatrix();controls.handleResize()}
 addEventListener('resize',size);size();newPoly('sphere');toSculpt(1,true);refreshObjs();
 (function loop(){requestAnimationFrame(loop);controls.update();stepAnim();drawGizmo();renderer.render(scene,camera)})();
